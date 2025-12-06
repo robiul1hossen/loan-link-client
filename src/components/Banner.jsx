@@ -65,7 +65,7 @@ const Banner = () => {
               </div>
 
               {/* Right Image Section */}
-              <div className="flex-1">
+              <div className="flex-1 hidden md:flex">
                 <img
                   src={img1}
                   alt="Loan Banner"
@@ -101,7 +101,7 @@ const Banner = () => {
               </div>
 
               {/* Image Section */}
-              <div className="flex-1">
+              <div className="flex-1 hidden md:flex">
                 <img
                   src={img2}
                   alt="Loan Process"
@@ -116,7 +116,7 @@ const Banner = () => {
             className="w-full h-[350px] bg-cover bg-center"
             style={{ backgroundImage: `url(${img3})` }}>
             <div className="bg-black opacity-[0.75] w-full h-full">
-              <div className="container mx-auto py-24 px-6 flex flex-col items-start gap-5">
+              <div className="container mx-auto py-12 md:py-24 px-6 flex flex-col items-start gap-5">
                 <h2 className="text-4xl md:text-5xl font-bold text-white">
                   Your Small Loan, Big Possibilities
                 </h2>

@@ -4,15 +4,20 @@ import AuthRoute from "./AuthRoute";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import MainRoute from "./MainRoute";
+import LoanDetails from "../pages/LoanDetails";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component: Home,
+    Component: MainRoute,
     children: [
       {
         index: true,
-        Component: MainRoute,
+        Component: Home,
+      },
+      {
+        path: "loan-details/:id",
+        element: <LoanDetails />,
       },
     ],
   },
