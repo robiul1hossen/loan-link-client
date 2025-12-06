@@ -1,7 +1,9 @@
-import React from "react";
+import React, { use } from "react";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../context/AuthContext";
 
 const Register = () => {
+  const { registerUser } = use(AuthContext);
   const {
     register,
     handleSubmit,
@@ -9,6 +11,13 @@ const Register = () => {
   } = useForm();
   const handleRegister = (data) => {
     console.log(data);
+    registerUser(data.email, data.password)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div>
