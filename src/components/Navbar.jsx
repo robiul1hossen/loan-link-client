@@ -1,8 +1,10 @@
-import React from "react";
+import React, { use } from "react";
 import { FaRegMoon } from "react-icons/fa";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
+  const { user } = use(AuthContext);
   const links = (
     <>
       <NavLink to="/">
@@ -17,12 +19,27 @@ const Navbar = () => {
       <NavLink to="/contact">
         <li className="font-semibold mx-3">Contact</li>
       </NavLink>
-      <NavLink to="/auth/login">
-        <li className="font-semibold mx-3">Login</li>
-      </NavLink>
-      <NavLink to="/auth/register">
-        <li className="font-semibold mx-3">Register</li>
-      </NavLink>
+      {user && (
+        <NavLink to="/dashboard">
+          <li className="font-semibold mx-3">Dashboard</li>
+        </NavLink>
+      )}
+      {user ? (
+        <>
+          <NavLink to="/auth/login">
+            <li className="font-semibold mx-3">Logout</li>
+          </NavLink>
+        </>
+      ) : (
+        <>
+          <NavLink to="/auth/login">
+            <li className="font-semibold mx-3">Login</li>
+          </NavLink>
+          <NavLink to="/auth/register">
+            <li className="font-semibold mx-3">Register</li>
+          </NavLink>
+        </>
+      )}
       {/* //TODO toggle theme */}
       <li className="font-semibold mx-3">
         <FaRegMoon size={24} />
@@ -30,7 +47,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="sticky top-0 z-50 mb-10">
+    <div className="sticky top-0 z-50 mb-5">
       <div className="navbar bg-base-100 shadow-sm ">
         <div className="navbar-start">
           <div className="dropdown">

@@ -1,6 +1,7 @@
 import { use } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../context/AuthContext";
+import { Link } from "react-router";
 
 const Login = () => {
   const { loginUser } = use(AuthContext);
@@ -22,7 +23,8 @@ const Login = () => {
   };
   return (
     <div>
-      <div className="card-body ">
+      <h2 className="text-2xl font-bold text-center mb-4">Login Now!</h2>
+      <div className="card-body rounded-2xl px-20 shadow-2xl">
         <form onSubmit={handleSubmit(handleLogin)}>
           <fieldset className="fieldset">
             <label className="label">Email</label>
@@ -50,6 +52,12 @@ const Login = () => {
             </div>
             <button className="btn btn-primary mt-4 w-full">Login</button>
           </fieldset>
+          <p>
+            New to this website? Please{" "}
+            <Link to="/auth/register" className="text-primary">
+              Sign Up
+            </Link>
+          </p>
         </form>
       </div>
     </div>

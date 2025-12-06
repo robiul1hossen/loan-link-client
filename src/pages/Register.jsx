@@ -2,6 +2,7 @@ import React, { use } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
+import { Link } from "react-router";
 
 const Register = () => {
   const { registerUser, updateUser } = use(AuthContext);
@@ -44,7 +45,8 @@ const Register = () => {
   };
   return (
     <div>
-      <div className="card-body ">
+      <h2 className="text-2xl font-bold text-center mb-4">Sign Up Now!</h2>
+      <div className="card-body rounded-2xl px-20 shadow-2xl">
         <form onSubmit={handleSubmit(handleRegister)}>
           <fieldset className="fieldset">
             <label className="label">Name</label>
@@ -91,6 +93,12 @@ const Register = () => {
             </div>
             <button className="btn btn-primary mt-4 w-full">Sign up</button>
           </fieldset>
+          <p>
+            Already have an account? Please{" "}
+            <Link to="/auth/login" className="text-primary">
+              Login
+            </Link>
+          </p>
         </form>
       </div>
     </div>
