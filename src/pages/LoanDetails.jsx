@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { useParams } from "react-router";
@@ -6,8 +6,13 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../components/Loader";
 import { AuthContext } from "../context/AuthContext";
+import LoanCalculator from "../routes/LoanCalculator";
 
 const LoanDetails = () => {
+  const [emiSelect, setEmiSelect] = useState("");
+  const [selectedEmi, setSelectedEmi] = useState(null);
+  const [totalPay, setTotalPay] = useState(0);
+
   const { loading } = use(AuthContext);
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
@@ -16,7 +21,7 @@ const LoanDetails = () => {
     queryKey: ["loan", id],
     queryFn: async () => {
       const res = await axiosSecure.get(`/loans/${id}`);
-      return res.data; // 👈 your DB data
+      return res.data;
     },
   });
 
@@ -40,6 +45,36 @@ const LoanDetails = () => {
     );
   }
 
+  const handleCalculate = (e) => {
+    e.preventDefault();
+    const [minRate, maxRate] = loan.interestRate.split("-").map(Number);
+    let interestRate = minRate;
+    const amount = Number(e.target.amount.value);
+    if (!selectedEmi) {
+      return setEmiSelect("Please select an EMI plan");
+    } else {
+      setEmiSelect("");
+    }
+    if (selectedEmi <= 6) {
+      interestRate = minRate;
+    }
+    if (selectedEmi > 6 && selectedEmi <= 12) {
+      interestRate = (minRate + maxRate) / 2 - 0.5;
+    }
+    if (selectedEmi > 12 && selectedEmi <= 18) {
+      interestRate = (minRate + maxRate) / 2;
+    }
+    if (selectedEmi > 18 && selectedEmi <= 24) {
+      interestRate = (minRate + maxRate) / 2 + 0.5;
+    }
+    if (selectedEmi > 24) {
+      interestRate = maxRate;
+    }
+    const interestAmount = (amount * interestRate) / 100;
+    const processingFee = (amount * Number(loan.processingFee)) / 100;
+    const total = amount + interestAmount + processingFee;
+    setTotalPay(total);
+  };
   return (
     <div className="max-w-5xl mx-auto mt-10 p-5">
       {/* //TODO Loan calculator */}
@@ -79,17 +114,17 @@ const LoanDetails = () => {
 
         <div className="bg-base-200 p-5 rounded-xl shadow-md">
           <h3 className="font-semibold">Interest Rate</h3>
-          <p>{loan.interestRate}</p>
+          <p>{loan.interestRate}%</p>
         </div>
 
         <div className="bg-base-200 p-5 rounded-xl shadow-md">
           <h3 className="font-semibold">Max Limit</h3>
-          <p>{loan.maxLimit}</p>
+          <p>${loan.maxLimit}</p>
         </div>
 
         <div className="bg-base-200 p-5 rounded-xl shadow-md">
           <h3 className="font-semibold">Processing Fee</h3>
-          <p>{loan.processingFee}</p>
+          <p>{loan.processingFee}% of loan amount</p>
         </div>
       </motion.div>
 
@@ -100,15 +135,42 @@ const LoanDetails = () => {
         animate="show"
         className="mt-8">
         <h3 className="text-xl font-semibold">Available EMI Plans</h3>
-        <div className="flex flex-wrap gap-3 mt-3">
-          {loan.emiPlans?.map((plan) => (
-            <span
-              key={plan}
-              className="px-4 py-2 rounded-full bg-primary text-white text-sm shadow-md">
-              {plan}
-            </span>
-          ))}
+
+        <div className="">
+          <div className="flex flex-wrap gap-3 mt-3 mb-1 w-full">
+            {loan.emiPlans?.map((plan) => (
+              <span
+                key={plan}
+                onClick={() => setSelectedEmi(plan)}
+                className={`px-4 py-2 rounded-full text-sm shadow-md cursor-pointer duration-300 transition-all 
+        ${
+          selectedEmi === plan
+            ? "bg-primary text-white"
+            : "bg-base-100 text-black hover:bg-primary hover:text-white"
+        }
+      `}>
+                {plan} Months
+              </span>
+            ))}
+          </div>
+          <span>{emiSelect}</span>
+          <div className="w-full mt-5">
+            <form onSubmit={handleCalculate} className="flex flex-col gap-1 ">
+              <label htmlFor="" className="text-left">
+                Enter Amount
+              </label>
+              <input
+                type="number"
+                name="amount"
+                required
+                className="input outline-none"
+              />
+            </form>
+          </div>
         </div>
+        <p>
+          {totalPay === 0 ? "" : <span>Total Payable Amount ${totalPay}</span>}
+        </p>
       </motion.div>
 
       {/* FEATURES */}
