@@ -1,15 +1,11 @@
-import { createBrowserRouter } from "react-router";
-import Home from "../pages/Home/Home";
+import { Outlet } from "react-router";
 
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    Component: Home,
-    children: [
-      {
-        index: true,
-        Component: Home,
-      },
-    ],
-  },
-]);
+const MainRoute = () => {
+  return (
+    <div>
+      <Outlet />
+    </div>
+  );
+};
+
+export default MainRoute;

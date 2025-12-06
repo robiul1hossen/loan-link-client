@@ -17,10 +17,10 @@ const Navbar = () => {
       <NavLink to="/contact">
         <li className="font-semibold mx-3">Contact</li>
       </NavLink>
-      <NavLink to="/login">
+      <NavLink to="/auth/login">
         <li className="font-semibold mx-3">Login</li>
       </NavLink>
-      <NavLink to="/register">
+      <NavLink to="/auth/register">
         <li className="font-semibold mx-3">Register</li>
       </NavLink>
       {/* //TODO toggle theme */}
