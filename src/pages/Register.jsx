@@ -1,19 +1,42 @@
 import React, { use } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../context/AuthContext";
+import axios from "axios";
 
 const Register = () => {
-  const { registerUser } = use(AuthContext);
+  const { registerUser, updateUser } = use(AuthContext);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const handleRegister = (data) => {
-    console.log(data);
+    // console.log(data);
+    const profileImage = data.photo[0];
     registerUser(data.email, data.password)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        const formData = new FormData();
+        formData.append("image", profileImage);
+        const imageHostingURL = `https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_host_image
+        }`;
+        axios
+          .post(imageHostingURL, formData)
+          .then((res) => {
+            const userPhotoURL = res.data?.data?.url;
+            const updateUserInfo = {
+              displayName: data.name,
+              photoURL: userPhotoURL,
+            };
+            console.log(updateUserInfo);
+            updateUser(updateUserInfo)
+              .then(() => console.log("user updated"))
+              .catch((error) => console.log("user update error", error));
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        // console.log(res);
       })
       .catch((error) => {
         console.log(error);
