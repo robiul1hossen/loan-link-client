@@ -1,16 +1,20 @@
-import React, { use, useState } from "react";
+import { use, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle } from "lucide-react";
-import { useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../components/Loader";
 import { AuthContext } from "../context/AuthContext";
+import { toast } from "react-toastify";
 
 const LoanDetails = () => {
   const [emiSelect, setEmiSelect] = useState("");
   const [selectedEmi, setSelectedEmi] = useState(null);
   const [totalPay, setTotalPay] = useState(0);
+  const [interestPar, setInterestPar] = useState(0); // NEW
+  const [amount, setAmount] = useState(0);
+  const navigate = useNavigate();
 
   const { loading } = use(AuthContext);
   const { id } = useParams();
@@ -48,7 +52,8 @@ const LoanDetails = () => {
     e.preventDefault();
     const [minRate, maxRate] = loan.interestRate.split("-").map(Number);
     let interestRate = minRate;
-    const amount = Number(e.target.amount.value);
+    const inputAmount = Number(e.target.amount.value);
+    setAmount(inputAmount);
     if (!selectedEmi) {
       return setEmiSelect("Please select an EMI plan");
     } else {
@@ -69,15 +74,37 @@ const LoanDetails = () => {
     if (selectedEmi > 24) {
       interestRate = maxRate;
     }
-    const interestAmount = (amount * interestRate) / 100;
-    const processingFee = (amount * Number(loan.processingFee)) / 100;
-    const total = amount + interestAmount + processingFee;
+    setInterestPar(interestRate);
+    const interestAmount = (inputAmount * interestRate) / 100;
+    const processingFee = (inputAmount * Number(loan.processingFee)) / 100;
+    const total = inputAmount + interestAmount + processingFee;
     setTotalPay(total);
   };
+  const handleApply = () => {
+    if (!selectedEmi) {
+      toast.error("Select EMI Plans");
+      return;
+    }
+    if (!amount) {
+      toast.error("Enter your desire loan amount");
+      return;
+    }
+
+    navigate("/loan-form", {
+      state: {
+        selectedEmi,
+        amount,
+        interestPar,
+        title: loan.title,
+      },
+    });
+  };
+
+  console.log({ selectedEmi, amount, interestPar });
   return (
     <div className="max-w-5xl mx-auto mt-10 p-5">
       {/* //TODO Loan calculator */}
-      {/* IMAGE */}
+
       <motion.div
         variants={scaleIn}
         initial="hidden"
@@ -90,7 +117,6 @@ const LoanDetails = () => {
         />
       </motion.div>
 
-      {/* TITLE + DESCRIPTION */}
       <motion.div
         variants={fadeInUp}
         initial="hidden"
@@ -100,7 +126,6 @@ const LoanDetails = () => {
         <p className="text-gray-600 mt-2">{loan.description}</p>
       </motion.div>
 
-      {/* BASIC INFO GRID */}
       <motion.div
         variants={fadeInUp}
         initial="hidden"
@@ -127,7 +152,6 @@ const LoanDetails = () => {
         </div>
       </motion.div>
 
-      {/* EMI PLANS */}
       <motion.div
         variants={fadeInUp}
         initial="hidden"
@@ -161,6 +185,7 @@ const LoanDetails = () => {
               <input
                 type="number"
                 name="amount"
+                onChange={(e) => setAmount(e.target.value)}
                 required
                 className="input outline-none"
               />
@@ -172,7 +197,6 @@ const LoanDetails = () => {
         </p>
       </motion.div>
 
-      {/* FEATURES */}
       <motion.div
         variants={fadeInUp}
         initial="hidden"
@@ -189,7 +213,6 @@ const LoanDetails = () => {
         </div>
       </motion.div>
 
-      {/* ELIGIBILITY */}
       <motion.div
         variants={fadeInUp}
         initial="hidden"
@@ -206,13 +229,20 @@ const LoanDetails = () => {
         </ul>
       </motion.div>
 
-      {/* APPLY BUTTON */}
       <motion.div
         variants={fadeInUp}
         initial="hidden"
         animate="show"
         className="mt-10 flex justify-center">
-        <button className="btn btn-primary btn-lg px-10 shadow-lg hover:scale-105 duration-300">
+        {/* <Link
+          to="/loan-form"
+          state={{ selectedEmi, amount, interestPar }}
+          className="btn btn-primary btn-lg px-10 shadow-lg hover:scale-105 duration-300">
+          Apply Now
+        </Link> */}
+        <button
+          onClick={handleApply}
+          className="btn btn-primary btn-lg px-10 shadow-lg hover:scale-105 duration-300">
           Apply Now
         </button>
       </motion.div>

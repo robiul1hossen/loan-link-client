@@ -6,6 +6,7 @@ import Register from "../pages/Register";
 import MainRoute from "./MainRoute";
 import LoanDetails from "../pages/LoanDetails";
 import AllLoans from "../pages/AllLoans";
+import ApplyLoanForm from "../pages/ApplyLoanForm";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
       {
         path: "all-loans",
         Component: AllLoans,
+      },
+      {
+        path: "loan-form",
+        Component: ApplyLoanForm,
       },
     ],
   },
