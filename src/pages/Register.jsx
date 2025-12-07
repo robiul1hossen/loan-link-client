@@ -3,9 +3,11 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import { Link } from "react-router";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const Register = () => {
   const { registerUser, updateUser } = use(AuthContext);
+  const axiosSecure = useAxiosSecure();
   const {
     register,
     handleSubmit,
@@ -29,9 +31,22 @@ const Register = () => {
               displayName: data.name,
               photoURL: userPhotoURL,
             };
+
             console.log(updateUserInfo);
             updateUser(updateUserInfo)
-              .then(() => console.log("user updated"))
+              .then(() => {
+                console.log("user updated");
+                const userInfoToDB = {
+                  displayName: data.name,
+                  photoURL: userPhotoURL,
+                  email: data.email,
+                  role: data.role,
+                };
+                console.log(userInfoToDB);
+                axiosSecure.post("/users", userInfoToDB).then((res) => {
+                  console.log(res.data);
+                });
+              })
               .catch((error) => console.log("user update error", error));
           })
           .catch((error) => {
@@ -59,15 +74,7 @@ const Register = () => {
             {errors.name && (
               <span className="text-xs text-red-500">Name is required</span>
             )}
-            <label className="label">Photo</label>
-            <input
-              type="file"
-              {...register("photo", { required: true })}
-              className="file-input file-input-primary outline-none w-full"
-            />
-            {errors.photo && (
-              <span className="text-xs text-red-500">Photo is required</span>
-            )}
+
             <label className="label">Email</label>
             <input
               type="email"
@@ -91,6 +98,39 @@ const Register = () => {
             <div>
               <a className="link link-hover">Forgot password?</a>
             </div>
+            <div className="flex gap-2 items-center">
+              <div className="flex-1">
+                <label className="label">Photo</label>
+                <input
+                  type="file"
+                  {...register("photo", { required: true })}
+                  className="file-input file-input-primary outline-none w-full"
+                />
+                {errors.photo && (
+                  <span className="text-xs text-red-500">
+                    Photo is required
+                  </span>
+                )}
+              </div>
+              <div className="flex-1">
+                <label className="label">Select Your Role</label>
+                <select
+                  className="select select-primary"
+                  defaultValue=""
+                  {...register("role", { required: true })}>
+                  <option value="" disabled>
+                    Pick Your Role
+                  </option>
+                  <option value="Borrower">Borrower</option>
+                  <option value="Manager">Manager</option>
+                </select>
+
+                {errors.role && (
+                  <span className="text-xs text-red-500">Role is required</span>
+                )}
+              </div>
+            </div>
+
             <button className="btn btn-primary mt-4 w-full">Sign up</button>
           </fieldset>
           <p>

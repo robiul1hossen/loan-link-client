@@ -6,7 +6,6 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../components/Loader";
 import { AuthContext } from "../context/AuthContext";
-import LoanCalculator from "../routes/LoanCalculator";
 
 const LoanDetails = () => {
   const [emiSelect, setEmiSelect] = useState("");
@@ -157,7 +156,7 @@ const LoanDetails = () => {
           <div className="w-full mt-5">
             <form onSubmit={handleCalculate} className="flex flex-col gap-1 ">
               <label htmlFor="" className="text-left">
-                Enter Amount
+                Enter Amount to Calculate Your Loan
               </label>
               <input
                 type="number"
