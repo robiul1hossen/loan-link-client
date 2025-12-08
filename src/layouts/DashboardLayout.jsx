@@ -1,4 +1,4 @@
-import { CreditCard, FileUser } from "lucide-react";
+import { BrickWallShield, CreditCard, FileUser } from "lucide-react";
 import React from "react";
 import { FaUsers } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router";
@@ -67,6 +67,7 @@ const DashboardLayout = () => {
                   </button>
                 </li>
               </NavLink>
+              {/* item added by me */}
               <NavLink to="/dashboard/my-loan">
                 <li>
                   <button
@@ -75,6 +76,17 @@ const DashboardLayout = () => {
                     {/* Home icon */}
                     <CreditCard size={16} />
                     <span className="is-drawer-close:hidden">My Loan</span>
+                  </button>
+                </li>
+              </NavLink>
+              <NavLink to="/dashboard/all-loans-admin">
+                <li>
+                  <button
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="All Loans">
+                    {/* Home icon */}
+                    <BrickWallShield size={16} />
+                    <span className="is-drawer-close:hidden">All Loans</span>
                   </button>
                 </li>
               </NavLink>

@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { Eye } from "lucide-react";
 
+// TODO view all loan application details for admin
 const AllLoanApplication = () => {
   const axiosSecure = useAxiosSecure();
   const { data: loans = [] } = useQuery({
@@ -57,7 +58,7 @@ const AllLoanApplication = () => {
                 <td>{loan.status}</td>
                 <td>
                   <button className="btn btn-xs cursor-pointer">
-                    <Eye size={18} />
+                    <Eye size={16} />
                   </button>
                 </td>
               </tr>
