@@ -2,11 +2,13 @@ import React, { use } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const Register = () => {
   const { registerUser, updateUser } = use(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
   const {
     register,
@@ -47,6 +49,7 @@ const Register = () => {
             updateUser(updateUserInfo)
               .then(() => {
                 console.log("user updated");
+                navigate(`${location?.state ? location?.state : "/"}`);
               })
               .catch((error) => console.log("user update error", error));
           })

@@ -2,6 +2,7 @@ import { BrickWallShield, CreditCard, FileUser } from "lucide-react";
 import React from "react";
 import { FaUsers } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router";
+import Footer from "../components/Footer";
 
 const DashboardLayout = () => {
   return (
@@ -34,6 +35,7 @@ const DashboardLayout = () => {
           </nav>
           {/* Page content here */}
           <Outlet />
+          <Footer />
         </div>
 
         <div className="drawer-side is-drawer-close:overflow-visible">
@@ -111,6 +113,17 @@ const DashboardLayout = () => {
                     <span className="is-drawer-close:hidden">
                       All Loan Applications
                     </span>
+                  </button>
+                </li>
+              </NavLink>
+              <NavLink to="/dashboard/add-loan">
+                <li>
+                  <button
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Add A Loan">
+                    {/* Home icon */}
+                    <FileUser size={16} />
+                    <span className="is-drawer-close:hidden">Add A Loan</span>
                   </button>
                 </li>
               </NavLink>
