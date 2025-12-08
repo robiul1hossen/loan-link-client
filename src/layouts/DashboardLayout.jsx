@@ -3,8 +3,10 @@ import React from "react";
 import { FaUsers } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router";
 import Footer from "../components/Footer";
+import useRole from "../hooks/useRole";
 
 const DashboardLayout = () => {
+  const { role } = useRole();
   return (
     <div className="max-w-6xl mx-auto">
       <div className="drawer lg:drawer-open">
@@ -81,52 +83,66 @@ const DashboardLayout = () => {
                   </button>
                 </li>
               </NavLink>
-              <NavLink to="/dashboard/all-loans-admin">
-                <li>
-                  <button
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                    data-tip="All Loans">
-                    {/* Home icon */}
-                    <BrickWallShield size={16} />
-                    <span className="is-drawer-close:hidden">All Loans</span>
-                  </button>
-                </li>
-              </NavLink>
-              <NavLink to="/dashboard/manage-users">
-                <li>
-                  <button
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                    data-tip="Manage Users">
-                    {/* Home icon */}
-                    <FaUsers size={16} />
-                    <span className="is-drawer-close:hidden">Manage Users</span>
-                  </button>
-                </li>
-              </NavLink>
-              <NavLink to="/dashboard/all-loan-application">
-                <li>
-                  <button
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                    data-tip="All Loan Applications">
-                    {/* Home icon */}
-                    <FileUser size={16} />
-                    <span className="is-drawer-close:hidden">
-                      All Loan Applications
-                    </span>
-                  </button>
-                </li>
-              </NavLink>
-              <NavLink to="/dashboard/add-loan">
-                <li>
-                  <button
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                    data-tip="Add A Loan">
-                    {/* Home icon */}
-                    <FileUser size={16} />
-                    <span className="is-drawer-close:hidden">Add A Loan</span>
-                  </button>
-                </li>
-              </NavLink>
+              {role === "Admin" && (
+                <>
+                  <NavLink to="/dashboard/all-loans-admin">
+                    <li>
+                      <button
+                        className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                        data-tip="All Loans">
+                        {/* Home icon */}
+                        <BrickWallShield size={16} />
+                        <span className="is-drawer-close:hidden">
+                          All Loans
+                        </span>
+                      </button>
+                    </li>
+                  </NavLink>
+                  <NavLink to="/dashboard/manage-users">
+                    <li>
+                      <button
+                        className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                        data-tip="Manage Users">
+                        {/* Home icon */}
+                        <FaUsers size={16} />
+                        <span className="is-drawer-close:hidden">
+                          Manage Users
+                        </span>
+                      </button>
+                    </li>
+                  </NavLink>
+                  <NavLink to="/dashboard/all-loan-application">
+                    <li>
+                      <button
+                        className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                        data-tip="All Loan Applications">
+                        {/* Home icon */}
+                        <FileUser size={16} />
+                        <span className="is-drawer-close:hidden">
+                          All Loan Applications
+                        </span>
+                      </button>
+                    </li>
+                  </NavLink>
+                </>
+              )}
+              {role === "Manager" && (
+                <>
+                  <NavLink to="/dashboard/add-loan">
+                    <li>
+                      <button
+                        className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                        data-tip="Add A Loan">
+                        {/* Home icon */}
+                        <FileUser size={16} />
+                        <span className="is-drawer-close:hidden">
+                          Add A Loan
+                        </span>
+                      </button>
+                    </li>
+                  </NavLink>
+                </>
+              )}
 
               {/* List item */}
               <li>

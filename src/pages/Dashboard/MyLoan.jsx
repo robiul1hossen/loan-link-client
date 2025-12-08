@@ -19,6 +19,7 @@ const MyLoan = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  console.log(user);
   const {
     data: loans = [],
     refetch,

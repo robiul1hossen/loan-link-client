@@ -17,6 +17,7 @@ import AllLoanAdmin from "../pages/Dashboard/AllLoanAdmin";
 import UpdateLoan from "../pages/Dashboard/UpdateLoan";
 import AddLoan from "../pages/Dashboard/AddLoan";
 import AdminRoute from "./AdminRoute";
+import ManagerRoute from "./ManagerRoute";
 
 export const router = createBrowserRouter([
   {
@@ -102,11 +103,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "update-loan/:id",
-        Component: UpdateLoan,
+        element: (
+          <AdminRoute>
+            <UpdateLoan />
+          </AdminRoute>
+        ),
       },
       {
         path: "add-loan",
-        Component: AddLoan,
+        element: (
+          <ManagerRoute>
+            <AddLoan />
+          </ManagerRoute>
+        ),
       },
     ],
   },
