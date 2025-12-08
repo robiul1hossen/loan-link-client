@@ -1,12 +1,14 @@
 import { createBrowserRouter } from "react-router";
 import Home from "../pages/Home/Home";
-import AuthRoute from "./AuthRoute";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import MainRoute from "./MainRoute";
 import LoanDetails from "../pages/LoanDetails";
 import AllLoans from "../pages/AllLoans";
 import ApplyLoanForm from "../pages/ApplyLoanForm";
+import MainRoute from "../layouts/MainRoute";
+import AuthRoute from "../layouts/AuthRoute";
+import DashboardLayout from "../layouts/DashboardLayout";
+import MyLoan from "../pages/Dashboard/MyLoan";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +44,16 @@ export const router = createBrowserRouter([
       {
         path: "register",
         Component: Register,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "my-loan",
+        Component: MyLoan,
       },
     ],
   },

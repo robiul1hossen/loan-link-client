@@ -220,7 +220,9 @@ const ApplyLoanForm = () => {
                 placeholder="Add a note"
               />
             </div>
-            <button className="btn btn-primary mt-4">Apply</button>
+            <div className="text-center">
+              <button className="btn btn-primary mt-4 px-12">Apply</button>
+            </div>
           </fieldset>
         </div>
       </form>

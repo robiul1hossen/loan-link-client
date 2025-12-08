@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Loader from "../components/Loader";
 import LoanCard from "../components/LoanCard";
@@ -19,6 +19,13 @@ const AllLoans = () => {
     },
   });
 
+  const loansData =
+    search.trim() === ""
+      ? loans?.data || []
+      : loans?.data?.filter((loan) =>
+          loan.title.toLowerCase().includes(search.toLowerCase())
+        );
+
   if (isLoading) {
     return <Loader />;
   }
@@ -32,69 +39,55 @@ const AllLoans = () => {
           "  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae a amet nobis vel quod accusantium non. Alias quisquam reprehenderit dolore!"
         }
       />
-      <div className="grid grid-cols-12 gap-5 ">
-        <div className="col-span-0 ">
-          {/* <div className="top-0 left-0">
-            <input
-              type="text"
-              placeholder="Type here"
-              className="input outline-none w-full"
-            />
-          </div> */}
-          {/* <div className="shadow-2xl h-20 w-full">
-            <input type="checkbox" defaultChecked className="checkbox" />
-          </div> */}
+      <div className=" gap-5 ">
+        <div className="md:text-right mb-4">
+          <input
+            type="text"
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Find your loan here"
+            className="input outline-none "
+          />
         </div>
-        <div className="col-span-12">
-          <div className="md:text-right mb-4">
-            <input
-              type="text"
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Find your loan here"
-              className="input outline-none "
-            />
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {loansData?.map((loan) => (
-              <LoanCard key={loan._id} loan={loan} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {loansData?.map((loan) => (
+            <LoanCard key={loan._id} loan={loan} />
+          ))}
+        </div>
+        <div className="flex justify-center mt-6">
+          <div className="join">
+            {/* Left Arrow */}
+
+            <button
+              className=""
+              onClick={() => setPage(page - 1)}
+              disabled={page === 1}>
+              <FaArrowLeft className="mx-2" />
+            </button>
+
+            {/* Page Numbers */}
+            {Array.from(
+              { length: loans?.totalPages || 0 },
+              (_, i) => i + 1
+            ).map((pageNum) => (
+              <button
+                key={pageNum}
+                onClick={() => setPage(pageNum)}
+                className={` mx-2 ${
+                  pageNum === page
+                    ? "btn-primary btn btn-xs"
+                    : "btn btn-outline hover:btn-primary btn-xs"
+                }`}>
+                {pageNum}
+              </button>
             ))}
-          </div>
-          <div className="flex justify-center mt-6">
-            <div className="join">
-              {/* Left Arrow */}
 
-              <button
-                className=""
-                onClick={() => setPage(page - 1)}
-                disabled={page === 1}>
-                <FaArrowLeft className="mx-2" />
-              </button>
-
-              {/* Page Numbers */}
-              {Array.from(
-                { length: loans?.totalPages || 0 },
-                (_, i) => i + 1
-              ).map((pageNum) => (
-                <button
-                  key={pageNum}
-                  onClick={() => setPage(pageNum)}
-                  className={` mx-2 ${
-                    pageNum === page
-                      ? "btn-primary btn btn-xs"
-                      : "btn btn-outline hover:btn-primary btn-xs"
-                  }`}>
-                  {pageNum}
-                </button>
-              ))}
-
-              {/* Right Arrow */}
-              <button
-                className=""
-                onClick={() => setPage(page + 1)}
-                disabled={page === loans?.totalPages}>
-                <FaArrowRight className="mx-2" />
-              </button>
-            </div>
+            {/* Right Arrow */}
+            <button
+              className=""
+              onClick={() => setPage(page + 1)}
+              disabled={page === loans?.totalPages}>
+              <FaArrowRight className="mx-2" />
+            </button>
           </div>
         </div>
       </div>

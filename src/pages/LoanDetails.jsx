@@ -1,7 +1,7 @@
-import { use, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle } from "lucide-react";
-import { Link, useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../components/Loader";
@@ -9,14 +9,15 @@ import { AuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
 
 const LoanDetails = () => {
+  const { loading, user } = use(AuthContext);
+  const [userData, setUserData] = useState({});
   const [emiSelect, setEmiSelect] = useState("");
   const [selectedEmi, setSelectedEmi] = useState(null);
   const [totalPay, setTotalPay] = useState(0);
-  const [interestPar, setInterestPar] = useState(0); // NEW
+  const [interestPar, setInterestPar] = useState(0);
   const [amount, setAmount] = useState(0);
   const navigate = useNavigate();
 
-  const { loading } = use(AuthContext);
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
 
@@ -27,19 +28,23 @@ const LoanDetails = () => {
       return res.data;
     },
   });
+  useEffect(() => {
+    if (!user?.email) return;
 
-  // animations
+    axiosSecure.get(`/user?email=${user.email}`).then((res) => {
+      setUserData(res.data);
+    });
+  }, [user?.email]);
+
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
     show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
-
   const scaleIn = {
     hidden: { opacity: 0, scale: 0.9 },
     show: { opacity: 1, scale: 1, transition: { duration: 0.4 } },
   };
 
-  // Loading state
   if (isLoading || loading) {
     return (
       <div className="max-w-5xl mx-auto p-10 text-center text-lg font-semibold">
@@ -48,37 +53,36 @@ const LoanDetails = () => {
     );
   }
 
-  const handleCalculate = (e) => {
-    e.preventDefault();
-    const [minRate, maxRate] = loan.interestRate.split("-").map(Number);
-    let interestRate = minRate;
-    const inputAmount = Number(e.target.amount.value);
-    setAmount(inputAmount);
+  const calculateLoan = (inputAmount) => {
     if (!selectedEmi) {
       return setEmiSelect("Please select an EMI plan");
     } else {
       setEmiSelect("");
     }
-    if (selectedEmi <= 6) {
-      interestRate = minRate;
-    }
-    if (selectedEmi > 6 && selectedEmi <= 12) {
+
+    const [minRate, maxRate] = loan.interestRate.split("-").map(Number);
+    let interestRate = minRate;
+
+    if (selectedEmi <= 6) interestRate = minRate;
+    if (selectedEmi > 6 && selectedEmi <= 12)
       interestRate = (minRate + maxRate) / 2 - 0.5;
-    }
-    if (selectedEmi > 12 && selectedEmi <= 18) {
+    if (selectedEmi > 12 && selectedEmi <= 18)
       interestRate = (minRate + maxRate) / 2;
-    }
-    if (selectedEmi > 18 && selectedEmi <= 24) {
+    if (selectedEmi > 18 && selectedEmi <= 24)
       interestRate = (minRate + maxRate) / 2 + 0.5;
-    }
-    if (selectedEmi > 24) {
-      interestRate = maxRate;
-    }
+    if (selectedEmi > 24) interestRate = maxRate;
+
     setInterestPar(interestRate);
+
     const interestAmount = (inputAmount * interestRate) / 100;
     const processingFee = (inputAmount * Number(loan.processingFee)) / 100;
     const total = inputAmount + interestAmount + processingFee;
+
     setTotalPay(total);
+  };
+  const handleCalculate = (e) => {
+    e.preventDefault();
+    calculateLoan(Number(amount));
   };
   const handleApply = () => {
     if (!selectedEmi) {
@@ -100,7 +104,6 @@ const LoanDetails = () => {
     });
   };
 
-  console.log({ selectedEmi, amount, interestPar });
   return (
     <div className="max-w-5xl mx-auto mt-10 p-5">
       {/* //TODO Loan calculator */}
@@ -185,7 +188,11 @@ const LoanDetails = () => {
               <input
                 type="number"
                 name="amount"
-                onChange={(e) => setAmount(e.target.value)}
+                onChange={(e) => {
+                  const val = Number(e.target.value);
+                  setAmount(val);
+                  calculateLoan(val);
+                }}
                 required
                 className="input outline-none"
               />
@@ -234,15 +241,16 @@ const LoanDetails = () => {
         initial="hidden"
         animate="show"
         className="mt-10 flex justify-center">
-        {/* <Link
-          to="/loan-form"
-          state={{ selectedEmi, amount, interestPar }}
-          className="btn btn-primary btn-lg px-10 shadow-lg hover:scale-105 duration-300">
-          Apply Now
-        </Link> */}
         <button
           onClick={handleApply}
-          className="btn btn-primary btn-lg px-10 shadow-lg hover:scale-105 duration-300">
+          disabled={userData?.role !== "Borrower"}
+          className={`btn btn-primary btn-lg px-10 shadow-lg duration-300 
+    ${
+      userData?.role !== "Borrower"
+        ? "btn-disabled opacity-50 cursor-not-allowed"
+        : "hover:scale-105"
+    }
+  `}>
           Apply Now
         </button>
       </motion.div>
