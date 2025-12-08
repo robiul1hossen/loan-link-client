@@ -32,20 +32,21 @@ const Register = () => {
               photoURL: userPhotoURL,
             };
 
-            console.log(updateUserInfo);
+            // send user to db
+            const userInfoToDB = {
+              displayName: data.name,
+              photoURL: userPhotoURL,
+              email: data.email,
+              role: data.role,
+            };
+            console.log(userInfoToDB);
+            axiosSecure.post("/users", userInfoToDB).then((res) => {
+              console.log(res.data);
+            });
+            // update user
             updateUser(updateUserInfo)
               .then(() => {
                 console.log("user updated");
-                const userInfoToDB = {
-                  displayName: data.name,
-                  photoURL: userPhotoURL,
-                  email: data.email,
-                  role: data.role,
-                };
-                console.log(userInfoToDB);
-                axiosSecure.post("/users", userInfoToDB).then((res) => {
-                  console.log(res.data);
-                });
               })
               .catch((error) => console.log("user update error", error));
           })

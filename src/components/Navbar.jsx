@@ -14,6 +14,7 @@ const Navbar = () => {
         console.log(error);
       });
   };
+  console.log(user);
   const links = (
     <>
       <NavLink to="/">
@@ -35,6 +36,12 @@ const Navbar = () => {
       )}
       {user ? (
         <>
+          <img
+            src={user?.photoURL}
+            alt=""
+            className="w-10 h-10 rounded-full"
+            referrerPolicy="no-referrer"
+          />
           <NavLink onClick={handleLogout} to="">
             <li className="font-semibold mx-3">Logout</li>
           </NavLink>

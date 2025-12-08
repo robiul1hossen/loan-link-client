@@ -10,6 +10,8 @@ import AuthRoute from "../layouts/AuthRoute";
 import DashboardLayout from "../layouts/DashboardLayout";
 import MyLoan from "../pages/Dashboard/MyLoan";
 import PrivateRoute from "./PrivateRoute";
+import ManageUsers from "../pages/Dashboard/ManageUsers";
+import RoleUpdate from "../pages/Dashboard/RoleUpdate";
 
 export const router = createBrowserRouter([
   {
@@ -60,6 +62,14 @@ export const router = createBrowserRouter([
       {
         path: "my-loan",
         Component: MyLoan,
+      },
+      {
+        path: "manage-users",
+        Component: ManageUsers,
+      },
+      {
+        path: "update-role/:id",
+        Component: RoleUpdate,
       },
     ],
   },

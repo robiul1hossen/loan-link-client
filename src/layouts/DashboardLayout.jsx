@@ -1,5 +1,6 @@
 import { CreditCard } from "lucide-react";
 import React from "react";
+import { FaUsers } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router";
 
 const DashboardLayout = () => {
@@ -74,6 +75,17 @@ const DashboardLayout = () => {
                     {/* Home icon */}
                     <CreditCard />
                     <span className="is-drawer-close:hidden">My Loan</span>
+                  </button>
+                </li>
+              </NavLink>
+              <NavLink to="/dashboard/manage-users">
+                <li>
+                  <button
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Manage Users">
+                    {/* Home icon */}
+                    <FaUsers />
+                    <span className="is-drawer-close:hidden">Manage Users</span>
                   </button>
                 </li>
               </NavLink>
