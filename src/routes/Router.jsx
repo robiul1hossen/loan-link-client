@@ -30,7 +30,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "loan-details/:id",
-        element: <LoanDetails />,
+        element: (
+          <PrivateRoute>
+            <LoanDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "all-loans",

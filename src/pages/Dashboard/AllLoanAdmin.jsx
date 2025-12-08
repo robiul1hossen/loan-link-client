@@ -4,17 +4,39 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { SquarePen, Trash2 } from "lucide-react";
 import { Link } from "react-router";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const AllLoanAdmin = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: loans = [] } = useQuery({
+  const { data: loans = [], refetch } = useQuery({
     queryKey: ["loans"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/loans/all`);
       return res.data.data;
     },
   });
-  console.log(loans);
+  const handleDeleteLoan = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/loans/${id}`).then((res) => {
+          console.log(res.data);
+          if (res.data.deletedCount) {
+            refetch();
+            toast.success("Loan application deleted by admin");
+          }
+        });
+      }
+    });
+  };
   return (
     <div>
       <div className="mt-5">
@@ -67,16 +89,18 @@ const AllLoanAdmin = () => {
                   </button>
                 </td>
                 <th>
-                  <button className="">
+                  <div className="">
                     <Link to={`/dashboard/update-loan/${loan._id}`}>
                       <button className="btn btn-xs cursor-pointer mx-1">
                         <SquarePen size={16} />
                       </button>
                     </Link>
-                    <button className="btn btn-xs cursor-pointer mx-1">
+                    <button
+                      onClick={() => handleDeleteLoan(loan._id)}
+                      className="btn btn-xs cursor-pointer mx-1">
                       <Trash2 size={16} />
                     </button>
-                  </button>
+                  </div>
                 </th>
               </tr>
             ))}
