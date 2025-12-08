@@ -53,7 +53,7 @@ const Banner = () => {
                 </p>
 
                 <div className="flex gap-4 pt-3">
-                  <Link to="/apply-loan" className="btn btn-primary btn-lg">
+                  <Link to="/loan-form" className="btn btn-primary btn-lg">
                     Apply for Loan
                   </Link>
                   <Link
@@ -89,7 +89,7 @@ const Banner = () => {
                 </p>
 
                 <div className="flex gap-4 pt-3">
-                  <Link to="/apply-loan" className="btn btn-secondary btn-lg">
+                  <Link to="/loan-form" className="btn btn-secondary btn-lg">
                     Apply for Loan
                   </Link>
                   <Link
@@ -128,7 +128,7 @@ const Banner = () => {
                 </p>
 
                 <div className="flex gap-4 pt-4">
-                  <Link to="/apply-loan" className="btn btn-success btn-lg">
+                  <Link to="/loan-form" className="btn btn-success btn-lg">
                     Apply for Loan
                   </Link>
                   <Link

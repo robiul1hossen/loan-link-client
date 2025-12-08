@@ -14,6 +14,7 @@ import ManageUsers from "../pages/Dashboard/ManageUsers";
 import RoleUpdate from "../pages/Dashboard/RoleUpdate";
 import AllLoanApplication from "../pages/Dashboard/AllLoanApplication";
 import AllLoanAdmin from "../pages/Dashboard/AllLoanAdmin";
+import UpdateLoan from "../pages/Dashboard/UpdateLoan";
 
 export const router = createBrowserRouter([
   {
@@ -80,6 +81,10 @@ export const router = createBrowserRouter([
       {
         path: "all-loans-admin",
         Component: AllLoanAdmin,
+      },
+      {
+        path: "update-loan/:id",
+        Component: UpdateLoan,
       },
     ],
   },

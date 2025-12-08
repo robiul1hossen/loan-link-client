@@ -136,7 +136,7 @@ const ApplyLoanForm = () => {
                 <label className="label">Loan Title</label>
                 <input
                   type="text"
-                  defaultValue={state.title}
+                  defaultValue={state?.title}
                   readOnly
                   {...register("title", { required: true })}
                   className="input outline-none w-full"
@@ -152,7 +152,7 @@ const ApplyLoanForm = () => {
                 <label className="label">Loan Category</label>
                 <input
                   type="text"
-                  defaultValue={state.category}
+                  defaultValue={state?.category}
                   readOnly
                   {...register("category", { required: true })}
                   className="input outline-none w-full"
@@ -168,7 +168,7 @@ const ApplyLoanForm = () => {
                 <label className="label">Loan Amount</label>
                 <input
                   type="number"
-                  defaultValue={state.amount}
+                  defaultValue={state?.amount}
                   readOnly
                   {...register("loanAmount", { required: true })}
                   className="input outline-none w-full"
@@ -184,7 +184,7 @@ const ApplyLoanForm = () => {
                 <label className="label">Interest</label>
                 <input
                   type="number"
-                  defaultValue={state.interestPar}
+                  defaultValue={state?.interestPar}
                   readOnly
                   {...register("interest", { required: true })}
                   className="input outline-none w-full"
@@ -200,7 +200,7 @@ const ApplyLoanForm = () => {
                 <label className="label">Total Pay</label>
                 <input
                   type="text"
-                  defaultValue={state.totalPay}
+                  defaultValue={state?.totalPay}
                   readOnly
                   {...register("totalPay", { required: true })}
                   className="input outline-none w-full"

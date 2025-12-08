@@ -3,6 +3,7 @@ import Title from "../../components/Title";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { SquarePen, Trash2 } from "lucide-react";
+import { Link } from "react-router";
 
 const AllLoanAdmin = () => {
   const axiosSecure = useAxiosSecure();
@@ -67,9 +68,11 @@ const AllLoanAdmin = () => {
                 </td>
                 <th>
                   <button className="">
-                    <button className="btn btn-xs cursor-pointer mx-1">
-                      <SquarePen size={16} />
-                    </button>
+                    <Link to={`/dashboard/update-loan/${loan._id}`}>
+                      <button className="btn btn-xs cursor-pointer mx-1">
+                        <SquarePen size={16} />
+                      </button>
+                    </Link>
                     <button className="btn btn-xs cursor-pointer mx-1">
                       <Trash2 size={16} />
                     </button>
