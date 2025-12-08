@@ -9,6 +9,7 @@ import MainRoute from "../layouts/MainRoute";
 import AuthRoute from "../layouts/AuthRoute";
 import DashboardLayout from "../layouts/DashboardLayout";
 import MyLoan from "../pages/Dashboard/MyLoan";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -49,7 +50,12 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        {" "}
+        <DashboardLayout />{" "}
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "my-loan",

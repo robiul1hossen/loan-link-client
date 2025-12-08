@@ -100,6 +100,7 @@ const LoanDetails = () => {
         amount,
         interestPar,
         title: loan.title,
+        totalPay,
       },
     });
   };

@@ -1,7 +1,7 @@
 import React, { use } from "react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { AuthContext } from "../context/AuthContext";
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router";
 import { toast } from "react-toastify";
@@ -24,7 +24,6 @@ const ApplyLoanForm = () => {
     formState: { errors },
   } = useForm();
   const handleLoanForm = (data) => {
-    // console.log(data);
     axiosSecure.post("/loan-application", data).then((res) => {
       if (res.data.insertedId) {
         toast.success("Your application has been submitted");
@@ -154,6 +153,7 @@ const ApplyLoanForm = () => {
                 <input
                   type="number"
                   defaultValue={state.amount}
+                  readOnly
                   {...register("loanAmount", { required: true })}
                   className="input outline-none w-full"
                   placeholder="Your desire loan amount"
@@ -177,6 +177,22 @@ const ApplyLoanForm = () => {
                 {errors.interest && (
                   <span className="text-sm text-red-500">
                     Interest Rate amount is required
+                  </span>
+                )}
+              </div>
+              <div className="flex flex-col w-full">
+                <label className="label">Total Pay</label>
+                <input
+                  type="text"
+                  defaultValue={state.totalPay}
+                  readOnly
+                  {...register("totalPay", { required: true })}
+                  className="input outline-none w-full"
+                  placeholder="Total Pay"
+                />
+                {errors.totalPay && (
+                  <span className="text-sm text-red-500">
+                    Total is required
                   </span>
                 )}
               </div>
