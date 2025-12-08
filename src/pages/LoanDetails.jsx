@@ -101,6 +101,7 @@ const LoanDetails = () => {
         interestPar,
         title: loan.title,
         totalPay,
+        category: loan.category,
       },
     });
   };

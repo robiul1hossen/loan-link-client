@@ -149,6 +149,22 @@ const ApplyLoanForm = () => {
                 )}
               </div>
               <div className="flex flex-col w-full">
+                <label className="label">Loan Category</label>
+                <input
+                  type="text"
+                  defaultValue={state.category}
+                  readOnly
+                  {...register("category", { required: true })}
+                  className="input outline-none w-full"
+                  placeholder="Loan category"
+                />
+                {errors.category && (
+                  <span className="text-sm text-red-500">
+                    Category is required
+                  </span>
+                )}
+              </div>
+              <div className="flex flex-col w-full">
                 <label className="label">Loan Amount</label>
                 <input
                   type="number"

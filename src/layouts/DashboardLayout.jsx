@@ -1,4 +1,4 @@
-import { CreditCard } from "lucide-react";
+import { CreditCard, FileUser } from "lucide-react";
 import React from "react";
 import { FaUsers } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router";
@@ -73,7 +73,7 @@ const DashboardLayout = () => {
                     className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                     data-tip="My Loan">
                     {/* Home icon */}
-                    <CreditCard />
+                    <CreditCard size={16} />
                     <span className="is-drawer-close:hidden">My Loan</span>
                   </button>
                 </li>
@@ -84,8 +84,21 @@ const DashboardLayout = () => {
                     className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                     data-tip="Manage Users">
                     {/* Home icon */}
-                    <FaUsers />
+                    <FaUsers size={16} />
                     <span className="is-drawer-close:hidden">Manage Users</span>
+                  </button>
+                </li>
+              </NavLink>
+              <NavLink to="/dashboard/all-loan-application">
+                <li>
+                  <button
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="All Loan Applications">
+                    {/* Home icon */}
+                    <FileUser size={16} />
+                    <span className="is-drawer-close:hidden">
+                      All Loan Applications
+                    </span>
                   </button>
                 </li>
               </NavLink>
