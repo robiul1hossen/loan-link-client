@@ -14,7 +14,6 @@ const Navbar = () => {
         console.log(error);
       });
   };
-  console.log(user);
   const links = (
     <>
       <NavLink to="/">

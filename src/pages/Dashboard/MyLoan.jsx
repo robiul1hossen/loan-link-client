@@ -19,7 +19,6 @@ const MyLoan = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  console.log(user);
   const {
     data: loans = [],
     refetch,
@@ -71,7 +70,20 @@ const MyLoan = () => {
   if (loading || isLoading) {
     return <Loader />;
   }
-  console.log(selectedLoan);
+
+  const handlePayment = async (loan) => {
+    const paymentInfo = {
+      email: loan.email,
+      applicationId: loan._id,
+      title: loan.title,
+    };
+    axiosSecure
+      .post("/create-checkout-session", paymentInfo)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => console.log(error));
+  };
   return (
     <div>
       <div className="mt-5">
@@ -91,6 +103,8 @@ const MyLoan = () => {
               <th></th>
               <th>Loan Title</th>
               <th>Amount</th>
+              <th>Loan Status</th>
+              <th>Application Fee</th>
               <th>Status</th>
               <th>Loan Id</th>
               <th>Actions</th>
@@ -103,6 +117,18 @@ const MyLoan = () => {
                 <td>{loan.title}</td>
                 <td>{loan.loanAmount}</td>
                 <td>{loan.status}</td>
+                <td>${loan?.applicationFee}</td>
+                <td>
+                  {loan.applicationStatus === "paid" ? (
+                    <span className="text-green-800">paid</span>
+                  ) : (
+                    <button
+                      onClick={() => handlePayment(loan)}
+                      className="btn btn-primary btn-xs">
+                      Pay
+                    </button>
+                  )}
+                </td>
                 <td>{loan._id}</td>
                 <td>
                   <button

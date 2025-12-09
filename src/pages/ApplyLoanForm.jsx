@@ -1,7 +1,6 @@
 import React, { use } from "react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { AuthContext } from "../context/AuthContext";
-// import { useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router";
 import { toast } from "react-toastify";
@@ -10,13 +9,6 @@ const ApplyLoanForm = () => {
   const { state } = useLocation();
   const { user } = use(AuthContext);
   const axiosSecure = useAxiosSecure();
-  // const { data } = useQuery({
-  //   queryKey: ["loanForm", user?.email],
-  //   queryFn: async () => {
-  //     const res = await axiosSecure.post(``);
-  //     return res.data;
-  //   },
-  // });
 
   const {
     register,

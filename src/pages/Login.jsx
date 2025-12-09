@@ -2,11 +2,14 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../context/AuthContext";
 import { Link, useLocation, useNavigate } from "react-router";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
   const {
     register,
     handleSubmit,
@@ -17,10 +20,23 @@ const Login = () => {
     loginUser(data.email, data.password)
       .then((res) => {
         navigate(`${location?.state ? location?.state : "/"}`);
-        console.log(res);
+        console.log("from login", res);
+        // send user to db
+        const userInfoToDB = {
+          displayName: res.user.displayName,
+          photoURL: res.user.PhotoURL,
+          email: data.email,
+          role: "Borrower",
+        };
+        axiosSecure
+          .post("/users", userInfoToDB)
+          .then(() => {})
+          .catch((error) => {
+            console.log(error);
+          });
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error.message);
       });
   };
   return (

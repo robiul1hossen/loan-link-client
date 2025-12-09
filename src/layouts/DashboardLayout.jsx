@@ -4,6 +4,7 @@ import { FaUsers } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router";
 import Footer from "../components/Footer";
 import useRole from "../hooks/useRole";
+import DashboardHome from "../pages/Dashboard/DashboardHome";
 
 const DashboardLayout = () => {
   const { role } = useRole();
@@ -36,6 +37,7 @@ const DashboardLayout = () => {
             <div className="px-4">Loan Link</div>
           </nav>
           {/* Page content here */}
+          {/* <DashboardHome /> */}
           <Outlet />
           <Footer />
         </div>

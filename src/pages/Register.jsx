@@ -41,7 +41,6 @@ const Register = () => {
               email: data.email,
               role: data.role,
             };
-            console.log(userInfoToDB);
             axiosSecure.post("/users", userInfoToDB).then((res) => {
               console.log(res.data);
             });
@@ -56,7 +55,6 @@ const Register = () => {
           .catch((error) => {
             console.log(error);
           });
-        // console.log(res);
       })
       .catch((error) => {
         console.log(error);
