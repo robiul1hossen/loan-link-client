@@ -4,7 +4,7 @@ import {
   CreditCard,
   FileUser,
 } from "lucide-react";
-import React from "react";
+import { FcApproval } from "react-icons/fc";
 import { FaUsers } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router";
 import Footer from "../components/Footer";
@@ -156,6 +156,19 @@ const DashboardLayout = () => {
                         <CircleDashed size={16} />
                         <span className="is-drawer-close:hidden">
                           Pending Loans
+                        </span>
+                      </button>
+                    </li>
+                  </NavLink>
+                  <NavLink to="/dashboard/approved-loans">
+                    <li>
+                      <button
+                        className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                        data-tip="Approved Loans">
+                        {/* Home icon */}
+                        <FcApproval size={16} />
+                        <span className="is-drawer-close:hidden">
+                          Approved Loans
                         </span>
                       </button>
                     </li>
