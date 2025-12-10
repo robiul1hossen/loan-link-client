@@ -18,6 +18,8 @@ import UpdateLoan from "../pages/Dashboard/UpdateLoan";
 import AddLoan from "../pages/Dashboard/AddLoan";
 import AdminRoute from "./AdminRoute";
 import ManagerRoute from "./ManagerRoute";
+import PaymentSuccess from "../pages/Dashboard/PaymentSuccess";
+import PaymentCancelled from "../pages/Dashboard/PaymentCancelled";
 
 export const router = createBrowserRouter([
   {
@@ -72,6 +74,14 @@ export const router = createBrowserRouter([
       {
         path: "my-loan",
         Component: MyLoan,
+      },
+      {
+        path: "success",
+        Component: PaymentSuccess,
+      },
+      {
+        path: "cancelled",
+        Component: PaymentCancelled,
       },
       {
         path: "manage-users",

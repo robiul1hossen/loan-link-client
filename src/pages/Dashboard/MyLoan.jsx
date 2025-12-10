@@ -76,11 +76,13 @@ const MyLoan = () => {
       email: loan.email,
       applicationId: loan._id,
       title: loan.title,
+      category: loan.category,
     };
     axiosSecure
       .post("/create-checkout-session", paymentInfo)
       .then((res) => {
         console.log(res.data);
+        window.location.href = res.data.url;
       })
       .catch((error) => console.log(error));
   };
@@ -103,9 +105,9 @@ const MyLoan = () => {
               <th></th>
               <th>Loan Title</th>
               <th>Amount</th>
-              <th>Loan Status</th>
+              <th>Application Status</th>
               <th>Application Fee</th>
-              <th>Status</th>
+              <th>Payment Status</th>
               <th>Loan Id</th>
               <th>Actions</th>
             </tr>
@@ -116,10 +118,10 @@ const MyLoan = () => {
                 <th>{index + 1}</th>
                 <td>{loan.title}</td>
                 <td>{loan.loanAmount}</td>
-                <td>{loan.status}</td>
+                <td>{loan.applicationStatus}</td>
                 <td>${loan?.applicationFee}</td>
                 <td>
-                  {loan.applicationStatus === "paid" ? (
+                  {loan.paymentStatus === "paid" ? (
                     <span className="text-green-800">paid</span>
                   ) : (
                     <button
