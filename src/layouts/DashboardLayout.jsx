@@ -3,6 +3,7 @@ import {
   CircleDashed,
   CreditCard,
   FileUser,
+  TicketX,
 } from "lucide-react";
 import { FcApproval } from "react-icons/fc";
 import { FaUsers } from "react-icons/fa";
@@ -166,9 +167,22 @@ const DashboardLayout = () => {
                         className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                         data-tip="Approved Loans">
                         {/* Home icon */}
-                        <FcApproval size={16} />
+                        <FcApproval size={18} />
                         <span className="is-drawer-close:hidden">
                           Approved Loans
+                        </span>
+                      </button>
+                    </li>
+                  </NavLink>
+                  <NavLink to="/dashboard/rejected-loans">
+                    <li>
+                      <button
+                        className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                        data-tip="Rejected Loans">
+                        {/* Home icon */}
+                        <TicketX size={16} />
+                        <span className="is-drawer-close:hidden">
+                          Rejected Loans
                         </span>
                       </button>
                     </li>

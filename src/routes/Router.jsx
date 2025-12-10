@@ -22,6 +22,7 @@ import PaymentSuccess from "../pages/Dashboard/PaymentSuccess";
 import PaymentCancelled from "../pages/Dashboard/PaymentCancelled";
 import PendingLoans from "../pages/Dashboard/PendingLoans";
 import ApproveLoans from "../pages/Dashboard/ApproveLoans";
+import RejectLoans from "../pages/Dashboard/RejectLoans";
 
 export const router = createBrowserRouter([
   {
@@ -146,6 +147,14 @@ export const router = createBrowserRouter([
         element: (
           <ManagerRoute>
             <ApproveLoans />
+          </ManagerRoute>
+        ),
+      },
+      {
+        path: "rejected-loans",
+        element: (
+          <ManagerRoute>
+            <RejectLoans />
           </ManagerRoute>
         ),
       },

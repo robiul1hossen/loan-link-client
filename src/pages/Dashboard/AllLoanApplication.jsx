@@ -55,7 +55,7 @@ const AllLoanApplication = () => {
                 </td>
                 <td>{loan.category}</td>
                 <td>{loan.loanAmount}</td>
-                <td>{loan.status}</td>
+                <td>{loan.applicationStatus}</td>
                 <td>
                   <button className="btn btn-xs cursor-pointer">
                     <Eye size={16} />
