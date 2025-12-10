@@ -23,6 +23,7 @@ import PaymentCancelled from "../pages/Dashboard/PaymentCancelled";
 import PendingLoans from "../pages/Dashboard/PendingLoans";
 import ApproveLoans from "../pages/Dashboard/ApproveLoans";
 import RejectLoans from "../pages/Dashboard/RejectLoans";
+import MyProfile from "../pages/Dashboard/MyProfile";
 
 export const router = createBrowserRouter([
   {
@@ -85,6 +86,10 @@ export const router = createBrowserRouter([
       {
         path: "cancelled",
         Component: PaymentCancelled,
+      },
+      {
+        path: "my-profile",
+        Component: MyProfile,
       },
       {
         path: "manage-users",

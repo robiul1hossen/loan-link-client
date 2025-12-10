@@ -134,15 +134,23 @@ const MyLoan = () => {
                 <td>{loan._id}</td>
                 <td>
                   <button
+                    disabled={
+                      loan.applicationStatus === "approved" ? true : false
+                    }
                     onClick={() => openEditLoanModal(loan)}
                     className="btn btn-xs btn-primary cursor-pointer mx-1">
                     <FaEdit />
                   </button>
-                  <button
-                    onClick={() => handleDelete(loan._id)}
-                    className="btn btn-xs btn-primary cursor-pointer mx-1  ">
-                    <FaTrash />
-                  </button>
+                  {
+                    <button
+                      disabled={
+                        loan.applicationStatus === "approved" ? true : false
+                      }
+                      onClick={() => handleDelete(loan._id)}
+                      className="btn btn-xs btn-primary cursor-pointer mx-1  ">
+                      <FaTrash />
+                    </button>
+                  }
                 </td>
               </tr>
             ))}

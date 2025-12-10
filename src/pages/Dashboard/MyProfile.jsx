@@ -1,0 +1,87 @@
+import React, { use } from "react";
+import Title from "../../components/Title";
+import { AuthContext } from "../../context/AuthContext";
+import useRole from "../../hooks/useRole";
+import Loader from "../../components/Loader";
+import { toast } from "react-toastify";
+import { Navigate } from "react-router";
+
+const MyProfile = () => {
+  const { user, loading, logOutUser } = use(AuthContext);
+  const { role, roleLoading } = useRole();
+
+  const handleLogout = () => {
+    logOutUser()
+      .then(() => {
+        <Navigate to="/" />;
+        toast.success("Successfully Signed Out");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
+
+  if (loading || roleLoading) {
+    return <Loader />;
+  }
+  return (
+    <div>
+      <div className="mt-5">
+        <Title
+          text1={"My"}
+          text2={"Profile"}
+          text3={
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum ut et repudiandae corporis quaerat quibusdam necessitatibus illo quae nostrum soluta."
+          }
+        />
+      </div>
+      <div
+        className="min-h-screen flex items-center justify-center bg-cover bg-center p-4"
+        style={{
+          backgroundImage:
+            "url('https://i.ibb.co.com/pvkXhKnQ/snowy-mountains-sunset.jpg')",
+          // mountain background
+        }}>
+        {/* Blur shadow card */}
+        <div className="backdrop-blur-xl bg-white/20 shadow-2xl rounded-3xl overflow-hidden flex flex-col md:flex-row max-w-4xl w-full">
+          {/* Left: Profile Image */}
+          <div className="md:w-1/2 w-full">
+            <img
+              src={user.photoURL}
+              alt="Profile"
+              className="h-[400px] w-full object-cover"
+            />
+          </div>
+
+          {/* Right: Info Section */}
+          <div className="md:w-1/2 w-full p-8 text-white">
+            <h2 className="text-3xl font-bold mb-2 tracking-wide">
+              {user.displayName}
+            </h2>
+            <p className="text-lg opacity-90 mb-4">{role}</p>
+
+            <div className="space-y-2">
+              <p>
+                <span className="font-semibold">Email:</span> {user.email}
+              </p>
+              <p>
+                <span className="font-semibold">Role Status:</span>{" "}
+                {user.roleStatus} hh
+              </p>
+            </div>
+
+            <div className="mt-6">
+              <button
+                onClick={handleLogout}
+                className="px-6 py-2 btn btn-primary font-semibold rounded-xl hover:btn-outline">
+                Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MyProfile;
