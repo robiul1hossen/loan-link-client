@@ -1,4 +1,9 @@
-import { BrickWallShield, CreditCard, FileUser } from "lucide-react";
+import {
+  BrickWallShield,
+  CircleDashed,
+  CreditCard,
+  FileUser,
+} from "lucide-react";
 import React from "react";
 import { FaUsers } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router";
@@ -138,6 +143,19 @@ const DashboardLayout = () => {
                         <FileUser size={16} />
                         <span className="is-drawer-close:hidden">
                           Add A Loan
+                        </span>
+                      </button>
+                    </li>
+                  </NavLink>
+                  <NavLink to="/dashboard/pending-loans">
+                    <li>
+                      <button
+                        className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                        data-tip="Pending Loans">
+                        {/* Home icon */}
+                        <CircleDashed size={16} />
+                        <span className="is-drawer-close:hidden">
+                          Pending Loans
                         </span>
                       </button>
                     </li>

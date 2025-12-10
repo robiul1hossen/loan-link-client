@@ -148,7 +148,6 @@ const MyLoan = () => {
             ))}
           </tbody>
         </table>
-        {/* Open the modal using document.getElementById('ID').showModal() method */}
 
         <dialog
           ref={editLoanModalRef}

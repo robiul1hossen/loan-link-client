@@ -20,6 +20,7 @@ import AdminRoute from "./AdminRoute";
 import ManagerRoute from "./ManagerRoute";
 import PaymentSuccess from "../pages/Dashboard/PaymentSuccess";
 import PaymentCancelled from "../pages/Dashboard/PaymentCancelled";
+import PendingLoans from "../pages/Dashboard/PendingLoans";
 
 export const router = createBrowserRouter([
   {
@@ -128,6 +129,14 @@ export const router = createBrowserRouter([
         element: (
           <ManagerRoute>
             <AddLoan />
+          </ManagerRoute>
+        ),
+      },
+      {
+        path: "pending-loans",
+        element: (
+          <ManagerRoute>
+            <PendingLoans />
           </ManagerRoute>
         ),
       },
