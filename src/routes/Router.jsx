@@ -25,6 +25,7 @@ import ApproveLoans from "../pages/Dashboard/ApproveLoans";
 import RejectLoans from "../pages/Dashboard/RejectLoans";
 import MyProfile from "../pages/Dashboard/MyProfile";
 import LoanAddByManager from "../pages/Dashboard/LoanAddByManager";
+import EditLoanByManager from "../pages/Dashboard/EditLoanByManager";
 
 export const router = createBrowserRouter([
   {
@@ -169,6 +170,14 @@ export const router = createBrowserRouter([
         element: (
           <ManagerRoute>
             <LoanAddByManager />
+          </ManagerRoute>
+        ),
+      },
+      {
+        path: "edit-loan/:id",
+        element: (
+          <ManagerRoute>
+            <EditLoanByManager />
           </ManagerRoute>
         ),
       },
