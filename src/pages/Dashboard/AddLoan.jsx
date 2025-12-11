@@ -59,7 +59,7 @@ const AddLoan = () => {
         toast.error(err?.message);
       });
   };
-
+  console.log(user.email);
   return (
     <div>
       <div className="mt-5">
@@ -72,8 +72,6 @@ const AddLoan = () => {
         />
       </div>
       <form onSubmit={handleSubmit(handleAddLoan)} className="p-6">
-        <h2 className="text-2xl font-bold mb-4">Update Loan</h2>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* IMAGE */}
           <div>
@@ -146,6 +144,17 @@ const AddLoan = () => {
               readOnly
               className="input input-bordered w-full mt-1 outline-none"
               {...register("createdBy", { required: true })}
+            />
+          </div>
+          {/* CREATOR EMail */}
+          <div>
+            <label className="font-semibold">Creator Email</label>
+            <input
+              type="text"
+              defaultValue={user.email}
+              readOnly
+              className="input input-bordered w-full mt-1 outline-none"
+              {...register("creatorEmail", { required: true })}
             />
           </div>
         </div>

@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import { FcApproval } from "react-icons/fc";
 import { CgProfile } from "react-icons/cg";
-import { FaUsers } from "react-icons/fa";
+import { FaRegAddressBook, FaUsers } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router";
 import Footer from "../components/Footer";
 import useRole from "../hooks/useRole";
@@ -191,6 +191,19 @@ const DashboardLayout = () => {
                         <TicketX size={16} />
                         <span className="is-drawer-close:hidden">
                           Rejected Loans
+                        </span>
+                      </button>
+                    </li>
+                  </NavLink>
+                  <NavLink to="/dashboard/loan-add-by-manager">
+                    <li>
+                      <button
+                        className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                        data-tip="Manager's Added Loan">
+                        {/* Home icon */}
+                        <FaRegAddressBook size={16} />
+                        <span className="is-drawer-close:hidden">
+                          Manager's Added Loan
                         </span>
                       </button>
                     </li>
