@@ -22,10 +22,8 @@ const UpdateLoan = () => {
   } = useForm({
     defaultValues: loan,
   });
-  const handleUpdateLoan = (data) => {
-    console.log(data);
-  };
-  console.log(loan);
+  const handleUpdateLoan = (data) => {};
+
   const categories = [
     "Personal Loan",
     "Home Loan",

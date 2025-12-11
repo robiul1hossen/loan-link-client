@@ -19,7 +19,6 @@ const ApplyLoanForm = () => {
     axiosSecure.post("/loan-application", data).then((res) => {
       if (res.data.insertedId) {
         toast.success("Your application has been submitted");
-        console.log(res.data);
       }
     });
   };

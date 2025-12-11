@@ -35,7 +35,7 @@ const RejectLoans = () => {
               <th>Loan ID</th>
               <th>Applicant Info</th>
               <th>Amount</th>
-              <th>Approved Date</th>
+              <th>Rejected Date</th>
               <th>Actions</th>
             </tr>
           </thead>

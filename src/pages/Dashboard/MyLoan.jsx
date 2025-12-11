@@ -81,7 +81,6 @@ const MyLoan = () => {
     axiosSecure
       .post("/create-checkout-session", paymentInfo)
       .then((res) => {
-        console.log(res.data);
         window.location.href = res.data.url;
       })
       .catch((error) => console.log(error));

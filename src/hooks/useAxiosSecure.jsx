@@ -4,6 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router";
 
 const axiosSecure = axios.create({
+  // baseURL: "https://loan-link-server-lime.vercel.app",
   baseURL: "http://localhost:3000",
 });
 const useAxiosSecure = () => {
@@ -21,7 +22,6 @@ const useAxiosSecure = () => {
       },
       (error) => {
         const statusCode = error.status;
-        console.log("from axios", statusCode);
         if (statusCode === 401 || statusCode === 403) {
           logOutUser().then(() => {
             navigate("/auth/login");

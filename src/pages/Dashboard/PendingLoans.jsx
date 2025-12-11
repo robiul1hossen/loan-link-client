@@ -30,7 +30,7 @@ const PendingLoans = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error.message);
       });
   };
   const handleReject = async (loan) => {
@@ -43,7 +43,7 @@ const PendingLoans = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error.message);
       });
   };
   const handleViewDetails = (loan) => {

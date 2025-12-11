@@ -11,9 +11,17 @@ import { FaUsers } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router";
 import Footer from "../components/Footer";
 import useRole from "../hooks/useRole";
+import Loader from "../components/Loader";
+import { use } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 const DashboardLayout = () => {
-  const { role } = useRole();
+  const { role, roleLoading } = useRole();
+  const { loading } = use(AuthContext);
+  if (loading || roleLoading) {
+    return <Loader />;
+  }
+
   return (
     <div className="max-w-6xl mx-auto">
       <div className="drawer lg:drawer-open">
@@ -43,7 +51,6 @@ const DashboardLayout = () => {
             <div className="px-4">Loan Link</div>
           </nav>
           {/* Page content here */}
-          {/* <DashboardHome /> */}
           <Outlet />
           <Footer />
         </div>

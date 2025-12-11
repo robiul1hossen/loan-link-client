@@ -14,7 +14,6 @@ const AllLoanApplication = () => {
       return res.data;
     },
   });
-  console.log(loans);
   return (
     <div>
       <div className="mt-5">

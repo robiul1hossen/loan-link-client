@@ -46,7 +46,7 @@ const AddLoan = () => {
   ];
 
   const handleAddLoan = (data) => {
-    console.log(data);
+    data.isFeatured = false;
     axiosSecure
       .post("/loans", data)
       .then((res) => {

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Title from "../../components/Title";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import { SquarePen, Trash2 } from "lucide-react";
+import { Cog, SquarePen, Trash2 } from "lucide-react";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
@@ -28,12 +28,30 @@ const AllLoanAdmin = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure.delete(`/loans/${id}`).then((res) => {
-          console.log(res.data);
           if (res.data.deletedCount) {
             refetch();
             toast.success("Loan application deleted by admin");
           }
         });
+      }
+    });
+  };
+
+  const handleCheck = (e, loan) => {
+    const value = e.target.checked;
+    const isFeatured = { isFeatured: value };
+    console.log(isFeatured);
+    axiosSecure.patch(`/loans/featured/${loan._id}`, isFeatured).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount) {
+        refetch();
+        if (value) {
+          toast.success("Loan removed to home");
+        } else {
+          toast.success("Loan added to home");
+        }
+      } else {
+        toast.error(res.data.message);
       }
     });
   };
@@ -44,7 +62,7 @@ const AllLoanAdmin = () => {
           text1={"All"}
           text2={"Loans"}
           text3={
-            "   Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit aliquam provident quasi ipsa ab accusantium amet eveniet eligendi, dignissimos non?"
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit aliquam provident quasi ipsa ab accusantium amet eveniet eligendi, dignissimos non?"
           }
         />
       </div>
@@ -70,7 +88,9 @@ const AllLoanAdmin = () => {
                     <div className="avatar">
                       <div className="mask mask-squircle h-12 w-12">
                         <img
-                          src={loan.image}
+                          loading="lazy"
+                          // src={loan.image}
+                          src=""
                           alt="Avatar Tailwind CSS Component"
                         />
                       </div>
@@ -84,8 +104,13 @@ const AllLoanAdmin = () => {
                 <td>{loan.interestRate}</td>
                 <td>{loan?.createdBy}</td>
                 <td>
-                  <button className="btn btn-xs cursor-pointer btn-primary">
-                    Add to Home
+                  <button className="">
+                    <input
+                      onChange={(e) => handleCheck(e, loan)}
+                      checked={loan.isFeatured}
+                      type="checkbox"
+                      className="checkbox checkbox-primary"
+                    />
                   </button>
                 </td>
                 <th>

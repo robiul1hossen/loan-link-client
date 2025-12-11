@@ -2,16 +2,17 @@ import React, { use } from "react";
 import { FaRegMoon } from "react-icons/fa";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../context/AuthContext";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { user, logOutUser } = use(AuthContext);
   const handleLogout = () => {
     logOutUser()
       .then(() => {
-        console.log("logout successful");
+        toast.success("Successfully Sign Out");
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error.message);
       });
   };
   const links = (

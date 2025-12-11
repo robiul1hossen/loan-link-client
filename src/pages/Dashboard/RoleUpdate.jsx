@@ -9,7 +9,6 @@ const RoleUpdate = () => {
   const [roleStatus, setRoleStatus] = useState("");
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
-  console.log(id);
   const { data: user = {}, refetch } = useQuery({
     queryKey: ["user", id],
     queryFn: async () => {
@@ -40,7 +39,6 @@ const RoleUpdate = () => {
       refetch();
     }
   };
-  console.log(user);
   return (
     <div>
       <div className="mt-5">

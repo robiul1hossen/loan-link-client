@@ -9,7 +9,7 @@ const AvailableLoans = () => {
   const { data: loans = [] } = useQuery({
     queryKey: ["loans"],
     queryFn: async () => {
-      const res = axiosSecure.get("/loans");
+      const res = axiosSecure.get("/loans/featured");
       return (await res).data;
     },
   });

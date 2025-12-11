@@ -16,11 +16,9 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const handleLogin = (data) => {
-    console.log(data);
     loginUser(data.email, data.password)
       .then((res) => {
         navigate(`${location?.state ? location?.state : "/"}`);
-        console.log("from login", res);
         // send user to db
         const userInfoToDB = {
           displayName: res.user.displayName,
@@ -42,14 +40,14 @@ const Login = () => {
   return (
     <div>
       <h2 className="text-2xl font-bold text-center mb-4">Login Now!</h2>
-      <div className="card-body rounded-2xl px-20 shadow-2xl">
+      <div className="px-6 md:px-20">
         <form onSubmit={handleSubmit(handleLogin)}>
           <fieldset className="fieldset">
             <label className="label">Email</label>
             <input
               type="email"
               {...register("email", { required: true })}
-              className="input outline-none w-full"
+              className="input outline-none w-full shadow-xl"
               placeholder="Email"
             />
             {errors.email && (
@@ -59,7 +57,7 @@ const Login = () => {
             <input
               type="password"
               {...register("password", { required: true })}
-              className="input outline-none w-full"
+              className="input outline-none w-full shadow-xl"
               placeholder="Password"
             />
             {errors.password && (

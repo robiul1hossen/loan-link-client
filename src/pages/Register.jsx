@@ -4,6 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const { registerUser, updateUser, loginWithGoogle } = use(AuthContext);
@@ -16,7 +17,6 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const handleRegister = (data) => {
-    // console.log(data);
     const profileImage = data.photo[0];
     registerUser(data.email, data.password)
       .then(() => {
@@ -41,38 +41,32 @@ const Register = () => {
               email: data.email,
               role: data.role,
             };
-            axiosSecure.post("/users", userInfoToDB).then((res) => {
-              console.log(res.data);
-            });
+            axiosSecure.post("/users", userInfoToDB).then(() => {});
             // update user
             updateUser(updateUserInfo)
               .then(() => {
-                console.log("user updated");
                 navigate(`${location?.state ? location?.state : "/"}`);
               })
-              .catch((error) => console.log("user update error", error));
+              .catch((error) => console.log(error));
           })
           .catch((error) => {
             console.log(error);
           });
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error.message);
       });
   };
   const handleGoogleLogin = () => {
     loginWithGoogle()
       .then((res) => {
-        console.log(res.user);
         const userInfoToDB = {
           displayName: res.user.displayName,
           photoURL: res.user.photoURL,
           email: res.user.email,
           role: "Borrower",
         };
-        axiosSecure.post("/users", userInfoToDB).then((res) => {
-          console.log(res.data);
-        });
+        axiosSecure.post("/users", userInfoToDB).then(() => {});
         // update user
         const updateUserInfo = {
           displayName: res.user.displayName,
@@ -80,17 +74,16 @@ const Register = () => {
         };
         updateUser(updateUserInfo)
           .then(() => {
-            console.log("user updated");
             navigate(`${location?.state ? location?.state : "/"}`);
           })
-          .catch((error) => console.log("user update error", error));
+          .catch((error) => console.log(error));
       })
-      .catch((error) => console.log(error));
+      .catch((error) => toast.error(error.message));
   };
   return (
     <div>
       <h2 className="text-2xl font-bold text-center mb-4">Sign Up Now!</h2>
-      <div className=" px-20 ">
+      <div className="px-6 md:px-20 ">
         <form onSubmit={handleSubmit(handleRegister)}>
           <fieldset className="fieldset">
             <label className="label">Name</label>
@@ -127,7 +120,7 @@ const Register = () => {
             <div>
               <a className="link link-hover">Forgot password?</a>
             </div>
-            <div className="flex gap-2 items-center">
+            <div className="flex flex-col md:flex-row gap-2 items-center">
               <div className="flex-1">
                 <label className="label">Photo</label>
                 <input
