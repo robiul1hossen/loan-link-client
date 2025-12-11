@@ -3,9 +3,10 @@ import { FaRegMoon } from "react-icons/fa";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
+import Loader from "./Loader";
 
 const Navbar = () => {
-  const { user, logOutUser } = use(AuthContext);
+  const { user, logOutUser, loading } = use(AuthContext);
   const handleLogout = () => {
     logOutUser()
       .then(() => {
@@ -62,6 +63,9 @@ const Navbar = () => {
       </li>
     </>
   );
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <div className="sticky top-0 z-50 mb-5 max-w-6xl mx-auto">
       <div className="navbar bg-base-100 shadow-sm ">

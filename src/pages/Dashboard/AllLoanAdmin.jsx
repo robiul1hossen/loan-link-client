@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import Title from "../../components/Title";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
@@ -42,7 +41,6 @@ const AllLoanAdmin = () => {
     const isFeatured = { isFeatured: value };
     console.log(isFeatured);
     axiosSecure.patch(`/loans/featured/${loan._id}`, isFeatured).then((res) => {
-      console.log(res.data);
       if (res.data.modifiedCount) {
         refetch();
         if (value) {

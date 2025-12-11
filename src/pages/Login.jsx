@@ -4,9 +4,10 @@ import { AuthContext } from "../context/AuthContext";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
+import Loader from "../components/Loader";
 
 const Login = () => {
-  const { loginUser } = useContext(AuthContext);
+  const { loginUser, loading } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
@@ -37,6 +38,9 @@ const Login = () => {
         toast.error(error.message);
       });
   };
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <div>
       <h2 className="text-2xl font-bold text-center mb-4">Login Now!</h2>

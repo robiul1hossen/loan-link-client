@@ -13,6 +13,7 @@ const AddLoan = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  // TODO: set error message
   const categories = [
     "Personal Loan",
     "Home Loan",
