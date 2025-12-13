@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Title from "../../components/Title";
 import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
@@ -7,8 +7,10 @@ import { toast } from "react-toastify";
 
 const RoleUpdate = () => {
   const [roleStatus, setRoleStatus] = useState("");
+  const [note, setNote] = useState("");
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
+  const suspendModalRef = useRef();
   const { data: user = {}, refetch } = useQuery({
     queryKey: ["user", id],
     queryFn: async () => {
@@ -23,21 +25,41 @@ const RoleUpdate = () => {
 
   const handleApprove = () => {
     setRoleStatus("approved");
+    console.log(roleStatus);
   };
+  console.log(roleStatus);
 
   const handleSuspend = () => {
     setRoleStatus("suspended");
   };
 
   const handleSave = async () => {
-    const res = await axiosSecure.patch(`/users/role/${id}`, {
+    const rejectNote = {
+      message: note,
       roleStatus,
-    });
-
-    if (res.data.modifiedCount) {
-      toast.success("Updated successfully!");
-      refetch();
+    };
+    if (roleStatus === "suspended") {
+      const res = await axiosSecure.patch(`/users/role/${id}`, {
+        rejectNote,
+      });
+      if (res.data.modifiedCount) {
+        console.log(res.data);
+        toast.success("Updated successfully!");
+        refetch();
+      }
+    } else {
+      console.log(roleStatus);
+      console.log(rejectNote);
+      const res = await axiosSecure.patch(`/users/role/${id}`, { rejectNote });
+      console.log(res.data);
+      if (res.data.modifiedCount) {
+        toast.success("Updated successfully!");
+        refetch();
+      }
     }
+  };
+  const openSuspendModal = () => {
+    suspendModalRef.current.showModal();
   };
   return (
     <div>
@@ -95,7 +117,9 @@ const RoleUpdate = () => {
 
             {/* SUSPEND BUTTON */}
             {roleStatus !== "suspended" && (
-              <button onClick={handleSuspend} className="btn btn-error btn-sm">
+              <button
+                onClick={openSuspendModal}
+                className="btn btn-error btn-sm">
                 Suspend
               </button>
             )}
@@ -106,6 +130,36 @@ const RoleUpdate = () => {
           </button>
         </div>
       </div>
+      <dialog
+        ref={suspendModalRef}
+        className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          <div className="max-w-sm w-full rounded-2xl bg-white p-4">
+            {/* Header */}
+            <h2 className="font-bold text-xl mb-3">Write a suspend note:</h2>
+            <div className="flex flex-col items-end">
+              <textarea
+                name=""
+                onChange={(e) => setNote(e.target.value)}
+                className="w-full border outline-none px-3"
+                color={5}
+                rows={5}
+                id=""></textarea>
+              <button
+                onClick={handleSuspend}
+                className="btn btn-primary btn-outline mt-2">
+                Suspend
+              </button>
+            </div>
+          </div>
+          <div className="modal-action">
+            <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <button className="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 };

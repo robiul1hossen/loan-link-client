@@ -5,11 +5,20 @@ import useRole from "../../hooks/useRole";
 import Loader from "../../components/Loader";
 import { toast } from "react-toastify";
 import { Navigate } from "react-router";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyProfile = () => {
   const { user, loading, logOutUser } = use(AuthContext);
   const { role, roleLoading } = useRole();
-
+  const axiosSecure = useAxiosSecure();
+  const { data: myData = {} } = useQuery({
+    queryKey: ["user", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/users/profile/${user?.email}`);
+      return res.data;
+    },
+  });
   const handleLogout = () => {
     logOutUser()
       .then(() => {
@@ -20,7 +29,7 @@ const MyProfile = () => {
         toast.error(error.message);
       });
   };
-
+  // console.log(myData);
   if (loading || roleLoading) {
     return <Loader />;
   }
@@ -40,7 +49,6 @@ const MyProfile = () => {
         style={{
           backgroundImage:
             "url('https://i.ibb.co.com/pvkXhKnQ/snowy-mountains-sunset.jpg')",
-          // mountain background
         }}>
         {/* Blur shadow card */}
         <div className="backdrop-blur-xl bg-white/20 shadow-2xl rounded-3xl overflow-hidden flex flex-col md:flex-row max-w-4xl w-full">
@@ -58,7 +66,7 @@ const MyProfile = () => {
             <h2 className="text-3xl font-bold mb-2 tracking-wide">
               {user.displayName}
             </h2>
-            <p className="text-lg opacity-90 mb-4">{role}</p>
+            <p className="text-lg opacity-90 mb-4">User Role: {role}</p>
 
             <div className="space-y-2">
               <p>
@@ -66,8 +74,16 @@ const MyProfile = () => {
               </p>
               <p>
                 <span className="font-semibold">Role Status:</span>{" "}
-                {user.roleStatus} hh
+                {myData.roleStatus?.toUpperCase()}
               </p>
+              {myData.message && myData.message !== "" ? (
+                <p>
+                  <span className="font-semibold">Suspend Note:</span>{" "}
+                  {myData.message}
+                </p>
+              ) : (
+                <></>
+              )}
             </div>
 
             <div className="mt-6">

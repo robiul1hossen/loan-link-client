@@ -102,7 +102,6 @@ const MyLoan = () => {
     paymentDetailsModalRef.current.showModal();
   };
   console.log(selectedLoan);
-  // const handleDetails = (loan) => {};
   return (
     <div>
       <div className="mt-5">
