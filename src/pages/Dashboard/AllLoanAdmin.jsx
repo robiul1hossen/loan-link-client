@@ -44,9 +44,9 @@ const AllLoanAdmin = () => {
       if (res.data.modifiedCount) {
         refetch();
         if (value) {
-          toast.success("Loan removed to home");
-        } else {
           toast.success("Loan added to home");
+        } else {
+          toast.success("Loan removed to home");
         }
       } else {
         toast.error(res.data.message);

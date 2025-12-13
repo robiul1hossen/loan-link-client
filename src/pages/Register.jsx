@@ -7,7 +7,8 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 
 const Register = () => {
-  const { registerUser, updateUser, loginWithGoogle } = use(AuthContext);
+  const { registerUser, updateUser, loginWithGoogle, setLoading } =
+    use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
@@ -75,8 +76,12 @@ const Register = () => {
         updateUser(updateUserInfo)
           .then(() => {
             navigate(`${location?.state ? location?.state : "/"}`);
+            setLoading(false);
           })
-          .catch((error) => console.log(error));
+          .catch((error) => {
+            setLoading(false);
+            console.log(error);
+          });
       })
       .catch((error) => toast.error(error.message));
   };

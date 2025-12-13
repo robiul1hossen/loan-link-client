@@ -3,17 +3,19 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../../context/AuthContext";
 import Loader from "../../components/Loader";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import Title from "../../components/Title";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import moment from "moment";
 
 const MyLoan = () => {
   const { user, loading } = useContext(AuthContext);
   const [selectedLoan, setSelectedLoan] = useState({});
   const axiosSecure = useAxiosSecure();
   const editLoanModalRef = useRef();
+  const paymentDetailsModalRef = useRef();
   const {
     register,
     handleSubmit,
@@ -85,6 +87,22 @@ const MyLoan = () => {
       })
       .catch((error) => console.log(error));
   };
+
+  const openPaymentDetailsModal = (loan) => {
+    axiosSecure
+      .get(`/payment/details/${loan._id}`)
+      .then((res) => {
+        // console.log(res.data);
+        setSelectedLoan(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    paymentDetailsModalRef.current.showModal();
+  };
+  console.log(selectedLoan);
+  // const handleDetails = (loan) => {};
   return (
     <div>
       <div className="mt-5">
@@ -120,15 +138,24 @@ const MyLoan = () => {
                 <td>{loan.applicationStatus}</td>
                 <td>${loan?.applicationFee}</td>
                 <td>
-                  {loan.paymentStatus === "paid" ? (
-                    <span className="text-green-800">paid</span>
-                  ) : (
-                    <button
-                      onClick={() => handlePayment(loan)}
-                      className="btn btn-primary btn-xs">
-                      Pay
-                    </button>
-                  )}
+                  <div className="flex items-center gap-1">
+                    {loan.paymentStatus === "paid" ? (
+                      <>
+                        <span className="text-green-800">paid</span>
+                        <button
+                          onClick={() => openPaymentDetailsModal(loan)}
+                          className="btn btn-xs btn-outline">
+                          <FaEye size={14} className="text-primary" />
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        onClick={() => handlePayment(loan)}
+                        className="btn btn-primary btn-xs">
+                        Pay
+                      </button>
+                    )}
+                  </div>
                 </td>
                 <td>{loan._id}</td>
                 <td>
@@ -386,6 +413,64 @@ const MyLoan = () => {
             </div>
             <div className="modal-action">
               <form method="dialog">
+                <button className="btn">Close</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
+        {/* Open the modal using document.getElementById('ID').showModal() method */}
+
+        <dialog
+          ref={paymentDetailsModalRef}
+          className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box">
+            <div className="max-w-sm w-full rounded-2xl bg-white shadow-xl p-4">
+              {/* Header */}
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-lg font-semibold text-gray-800">
+                  {selectedLoan.title}
+                </h3>
+                <span className="px-3 py-1 text-xs font-medium rounded-full bg-green-100 text-green-700">
+                  {selectedLoan?.applicationStatus?.toUpperCase()}
+                </span>
+              </div>
+
+              {/* Body */}
+              <div className="space-y-2 text-sm text-gray-600">
+                <p>
+                  <span className="font-medium text-gray-800">Amount:</span> $
+                  {selectedLoan.amount}
+                </p>
+                <p>
+                  <span className="font-medium text-gray-800">Email:</span>{" "}
+                  {selectedLoan.email}
+                </p>
+                <p className="truncate">
+                  <span className="font-medium text-gray-800">
+                    Transaction ID:
+                  </span>{" "}
+                  {selectedLoan.transactionId}
+                </p>
+                <p className="truncate">
+                  <span className="font-medium text-gray-800">
+                    Application ID:
+                  </span>{" "}
+                  {selectedLoan.applicationId}
+                </p>
+                <p className="truncate">
+                  <span className="font-medium text-gray-800">Paid At:</span> {}
+                  {moment(selectedLoan?.paidAt).format("MM/DD/YYYY")}
+                </p>
+              </div>
+
+              {/* Footer */}
+              <div className="mt-4 text-xs text-gray-400">
+                Record ID: {selectedLoan._id}
+              </div>
+            </div>
+            <div className="modal-action">
+              <form method="dialog">
+                {/* if there is a button in form, it will close the modal */}
                 <button className="btn">Close</button>
               </form>
             </div>

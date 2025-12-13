@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import Loader from "../components/Loader";
 
 const Login = () => {
-  const { loginUser, loading, loginWithGoogle, updateUser } =
+  const { loginUser, loginWithGoogle, setLoading, updateUser } =
     useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -57,14 +57,13 @@ const Login = () => {
         updateUser(updateUserInfo)
           .then(() => {
             navigate(`${location?.state ? location?.state : "/"}`);
+            setLoading(false);
           })
           .catch((error) => console.log(error));
       })
       .catch((error) => toast.error(error.message));
   };
-  if (loading) {
-    return <Loader />;
-  }
+
   return (
     <div>
       <h2 className="text-2xl font-bold text-center mb-4">Login Now!</h2>

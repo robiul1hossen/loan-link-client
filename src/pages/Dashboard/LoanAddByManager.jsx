@@ -107,15 +107,10 @@ const LoanAddByManager = () => {
         <div className="md:text-right mt-2">
           <input
             type="text"
-            // value={keyword}
             onChange={(e) => handleSearch(e)}
-            placeholder="Search Users"
-            className="input outline-none"
+            placeholder="Search Loans"
+            className="input outline-none w-[265px]"
           />
-          <button type="submit" className="btn btn-primary w-full mt-2">
-            {" "}
-            Search
-          </button>
         </div>
       </div>
 
@@ -149,16 +144,13 @@ const LoanAddByManager = () => {
                 <td>
                   <Link to={`/dashboard/edit-loan/${loan._id}`}>
                     <button className="btn btn-xs cursor-pointer">
-                      <FaEdit size={16} />
+                      <FaEdit className="text-primary" size={16} />
                     </button>
                   </Link>
                   <button
                     onClick={() => handleDelete(loan._id)}
                     className="btn btn-xs cursor-pointer">
-                    <FaTrash size={16} />
-                  </button>
-                  <button className="btn btn-xs cursor-pointer">
-                    <FaEdit size={16} />
+                    <FaTrash className="text-primary" size={16} />
                   </button>
                 </td>
               </tr>
