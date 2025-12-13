@@ -1,6 +1,7 @@
 import Banner from "../../components/Banner";
 import AvailableLoans from "../../components/AvailableLoans";
 import HowItWorks from "../HowItWorks ";
+import CustomerFeedback from "../../components/CustomerFeedback ";
 
 const Home = () => {
   return (
@@ -8,6 +9,7 @@ const Home = () => {
       <Banner />
       <AvailableLoans />
       <HowItWorks />
+      <CustomerFeedback />
     </div>
   );
 };
