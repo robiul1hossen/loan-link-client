@@ -18,6 +18,21 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const handleRegister = (data) => {
+    const upperCase = /(?=.*[A-Z])/;
+    const lowercase = /(?=.*[a-z])/;
+    const sixCha = /.{6,}/;
+    // const sixCha = /.{6,}/;
+
+    if (!sixCha.test(data.password)) {
+      return toast.error("Password must be at least 6 character");
+    }
+    if (!lowercase.test(data.password)) {
+      return toast.error("Password must be one lowercase");
+    }
+    if (!upperCase.test(data.password)) {
+      return toast.error("Password must be one Uppercase");
+    }
+
     const profileImage = data.photo[0];
     registerUser(data.email, data.password)
       .then(() => {
