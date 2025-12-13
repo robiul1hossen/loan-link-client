@@ -3,10 +3,10 @@ import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router";
 
 const LoanCard = ({ loan }) => {
-  const { _id, title, description, maxLimit, loanImage } = loan;
+  const { _id, title, description, maxLimit, loanImage, interestRate } = loan;
   return (
-    <div>
-      <div className="card  bg-base-100 card-sm shadow-sm">
+    <div className="">
+      <div className="card card-sm shadow-sm ">
         <div className="card-body">
           <h2 className="card-title font-bold">{title}</h2>
           <img
@@ -16,8 +16,8 @@ const LoanCard = ({ loan }) => {
           />
           <p>{description.slice(0, 60)}...</p>
           <div className=" justify-between items-center">
-            <p className="text-[14px] font-medium mb-2">
-              maxLimit: ${maxLimit}
+            <p className="text-[13px] font-medium mb-2">
+              maxLimit: ${maxLimit} with {interestRate}% interest
             </p>
             <Link to={`/loan-details/${_id}`}>
               <div className="flex gap-1 items-center btn btn-sm btn-outline hover:btn-primary duration-300 transition">

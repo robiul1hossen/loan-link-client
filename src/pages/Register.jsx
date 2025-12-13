@@ -41,6 +41,7 @@ const Register = () => {
         const imageHostingURL = `https://api.imgbb.com/1/upload?key=${
           import.meta.env.VITE_host_image
         }`;
+        toast.success("Registration successful");
         axios
           .post(imageHostingURL, formData)
           .then((res) => {

@@ -54,6 +54,7 @@ const Login = () => {
           displayName: res.user.displayName,
           photoURL: res.user.photoURL,
         };
+        toast.success("Logged in successful");
         updateUser(updateUserInfo)
           .then(() => {
             navigate(`${location?.state ? location?.state : "/"}`);
