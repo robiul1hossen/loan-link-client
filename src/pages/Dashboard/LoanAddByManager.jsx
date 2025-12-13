@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useEffect, useState } from "react";
 import Title from "../../components/Title";
 import { AuthContext } from "../../context/AuthContext";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -9,6 +9,8 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 
 const LoanAddByManager = () => {
+  const [searchData, setSearchData] = useState([]);
+  // const [keyword, setKeyword] = useState("");
   const { user } = use(AuthContext);
   const axiosSecure = useAxiosSecure();
   const { data: loans = [], refetch } = useQuery({
@@ -38,6 +40,40 @@ const LoanAddByManager = () => {
       }
     });
   };
+  useEffect(() => {
+    setSearchData(loans);
+  }, [loans]);
+
+  const categories = [
+    "Personal Loan",
+    "Home Loan",
+    "Car Loan",
+    "Education Loan",
+    "Business Loan",
+  ];
+  const handleFilter = (e) => {
+    const value = e.target.value;
+    axiosSecure
+      .get(`/loans/filter?category=${value}&creatorEmail=${user?.email}`)
+      .then((res) => {
+        setSearchData(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const value = e.target.value;
+    axiosSecure
+      .get(`/loans/search?keyword=${value}&creatorEmail=${user?.email}`)
+      .then((res) => {
+        setSearchData(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div>
       <div className="mt-5">
@@ -49,6 +85,40 @@ const LoanAddByManager = () => {
           }
         />
       </div>
+
+      <div className="flex flex-col justify-end items-end">
+        <div className="mt-4 w-[265px]">
+          <div className="w-full ">
+            <select
+              onChange={(e) => handleFilter(e)}
+              defaultValue=" Pick a Category"
+              className="select outline-none w-full">
+              <option defaultValue=" Pick a Category" disabled={true}>
+                Pick a Category
+              </option>
+              {categories.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <div className="md:text-right mt-2">
+          <input
+            type="text"
+            // value={keyword}
+            onChange={(e) => handleSearch(e)}
+            placeholder="Search Users"
+            className="input outline-none"
+          />
+          <button type="submit" className="btn btn-primary w-full mt-2">
+            {" "}
+            Search
+          </button>
+        </div>
+      </div>
+
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}
@@ -63,7 +133,7 @@ const LoanAddByManager = () => {
             </tr>
           </thead>
           <tbody>
-            {loans.map((loan, i) => (
+            {searchData.map((loan, i) => (
               <tr key={loan._id}>
                 <th>{i + 1}</th>
                 <td>
