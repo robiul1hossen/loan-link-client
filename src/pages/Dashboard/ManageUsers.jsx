@@ -1,13 +1,13 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Title from "../../components/Title";
-import { AuthContext } from "../../context/AuthContext";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router";
 
 const ManageUsers = () => {
-  const { user } = use(AuthContext);
   const [searchData, setSearchData] = useState([]);
+  const [keyword, setKeyword] = useState("");
+  const [roles, setRoles] = useState([]);
   const axiosSecure = useAxiosSecure();
   const { data: users = [] } = useQuery({
     queryKey: ["users"],
@@ -19,14 +19,32 @@ const ManageUsers = () => {
   useEffect(() => {
     setSearchData(users);
   }, [users]);
-  const handleSearch = async (e) => {
-    const keyword = e.target.value;
-    await axiosSecure.get(`/search/user?keyword=${keyword}`).then((res) => {
-      // console.log(res.data);
-      setSearchData(res.data);
-    });
+  const handleRoleChange = (e) => {
+    const { value, checked } = e.target;
+    setRoles((prev) =>
+      checked ? [...prev, value] : prev.filter((role) => role !== value)
+    );
   };
-  // console.log("from const", handleSearch);
+
+  const handleFilter = (e) => {
+    e.preventDefault();
+    console.log(roles);
+    axiosSecure
+      .get(`/search/user?`, {
+        params: {
+          keyword,
+          roles,
+        },
+      })
+      .then((res) => {
+        setSearchData(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div>
       <div className="mt-5">
@@ -37,15 +55,59 @@ const ManageUsers = () => {
             "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit perferendis, numquam animi mollitia ab ducimus. Perspiciatis error nostrum officiis culpa!"
           }
         />
-        <div className="md:text-right my-4">
-          <input
-            type="text"
-            // onChange={(e) => setSearch(e.target.value)}
-            onChange={(e) => handleSearch(e)}
-            placeholder="Find your loan here"
-            className="input outline-none "
-          />
-        </div>
+        <form onSubmit={handleFilter}>
+          <div className="flex flex-col justify-end items-end">
+            <div className="flex gap-1 items-center mt-4">
+              <div>
+                <label className="label">
+                  <input
+                    value="Borrower"
+                    onChange={handleRoleChange}
+                    type="checkbox"
+                    className="checkbox"
+                  />
+                  Borrower
+                </label>
+              </div>
+              <div>
+                <label className="label">
+                  <input
+                    value="Manager"
+                    onChange={handleRoleChange}
+                    type="checkbox"
+                    className="checkbox"
+                  />
+                  Manager
+                </label>
+              </div>
+              <div>
+                <label className="label">
+                  <input
+                    value="Admin"
+                    onChange={handleRoleChange}
+                    type="checkbox"
+                    className="checkbox"
+                  />
+                  Admin
+                </label>
+              </div>
+            </div>
+            <div className="md:text-right mt-2">
+              <input
+                type="text"
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
+                placeholder="Search Users"
+                className="input outline-none "
+              />
+              <button type="submit" className="btn btn-primary w-full mt-2">
+                {" "}
+                filter
+              </button>
+            </div>
+          </div>
+        </form>
+
         <div className="overflow-x-auto">
           <table className="table table-zebra">
             {/* head */}
