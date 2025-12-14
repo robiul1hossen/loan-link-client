@@ -16,6 +16,16 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
 
   const registerUser = (email, password) => {
     setLoading(true);
@@ -50,6 +60,8 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
   const userInfo = {
+    theme,
+    toggleTheme,
     registerUser,
     loginUser,
     loginWithGoogle,

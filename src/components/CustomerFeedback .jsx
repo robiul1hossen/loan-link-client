@@ -37,25 +37,21 @@ const CustomerFeedback = () => {
   const [direction, setDirection] = useState(1);
   const length = feedbacks.length;
 
-  // Auto slide
-  useEffect(() => {
-    const timer = setInterval(() => {
-      handleNext();
-    }, 5000); // Change slide every 5 seconds
-    return () => clearInterval(timer);
-  }, [current]);
-
   const handleNext = () => {
     setDirection(1);
     setCurrent(current === length - 1 ? 0 : current + 1);
   };
-
+  useEffect(() => {
+    const timer = setInterval(() => {
+      handleNext();
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [current]);
   const handlePrev = () => {
     setDirection(-1);
     setCurrent(current === 0 ? length - 1 : current - 1);
   };
 
-  // Framer Motion variants
   const variants = {
     enter: (direction) => ({
       x: direction > 0 ? 300 : -300,
@@ -84,7 +80,7 @@ const CustomerFeedback = () => {
         </div>
 
         {/* Fixed height container */}
-        <div className="relative bg-white p-8 rounded-2xl shadow-md overflow-hidden min-h-[250px] flex items-center justify-center">
+        <div className="relative bg-slate-50 p-8 rounded-2xl shadow-md overflow-hidden min-h-[250px] flex items-center justify-center">
           <AnimatePresence custom={direction} mode="wait">
             <motion.div
               key={current}

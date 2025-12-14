@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-body {
-  /* background-color: #faf6e9; */
+a.active {
+  @apply underline font-bold text-primary;
 }

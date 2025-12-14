@@ -31,11 +31,15 @@ const WhyChooseLoanLink = () => {
           <Title text1={" Why Choose"} text2={"LoanLink"} />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div
+          data-aos="fade-down"
+          data-aos-easing="linear"
+          data-aos-duration="1500"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {benefits.map((b, idx) => (
             <div
               key={idx}
-              className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition text-center">
+              className="bg-slate-50 p-6 rounded-2xl shadow hover:shadow-lg transition text-center">
               <div className="text-4xl mb-4">{b.icon}</div>
               <h3 className="text-xl font-semibold mb-2">{b.title}</h3>
               <p className="text-slate-600 text-sm">{b.desc}</p>

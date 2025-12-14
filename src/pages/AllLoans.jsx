@@ -48,7 +48,9 @@ const AllLoans = () => {
             className="input outline-none "
           />
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div
+          data-aos="fade-up"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {loansData?.map((loan) => (
             <LoanCard key={loan._id} loan={loan} />
           ))}

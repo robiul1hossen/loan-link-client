@@ -4,9 +4,10 @@ import { Link, NavLink } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
 import Loader from "./Loader";
+import { Moon, Sun } from "lucide-react";
 
 const Navbar = () => {
-  const { user, logOutUser, loading } = use(AuthContext);
+  const { user, logOutUser, loading, theme, toggleTheme } = use(AuthContext);
   const handleLogout = () => {
     logOutUser()
       .then(() => {
@@ -17,7 +18,7 @@ const Navbar = () => {
       });
   };
   const links = (
-    <>
+    <div className=" flex justify-center items-center">
       <NavLink to="/">
         <li className="font-semibold mx-3">Home</li>
       </NavLink>
@@ -31,7 +32,7 @@ const Navbar = () => {
         <li className="font-semibold mx-3">Contact</li>
       </NavLink>
       {user && (
-        <NavLink to="/dashboard">
+        <NavLink to="/dashboard/my-profile">
           <li className="font-semibold mx-3">Dashboard</li>
         </NavLink>
       )}
@@ -40,10 +41,10 @@ const Navbar = () => {
           <img
             src={user?.photoURL}
             alt=""
-            className="w-10 h-10 rounded-full"
+            className="w-8 h-8 rounded-full"
             referrerPolicy="no-referrer"
           />
-          <NavLink onClick={handleLogout} to="">
+          <NavLink onClick={handleLogout} to="/auth/login">
             <li className="font-semibold mx-3">Logout</li>
           </NavLink>
         </>
@@ -57,11 +58,15 @@ const Navbar = () => {
           </NavLink>
         </>
       )}
-      {/* //TODO toggle theme */}
-      <li className="font-semibold mx-3">
-        <FaRegMoon size={24} />
-      </li>
-    </>
+      <label className="swap swap-rotate">
+        <input
+          type="checkbox"
+          onChange={toggleTheme}
+          checked={theme === "dark"}
+        />
+        {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+      </label>
+    </div>
   );
   if (loading) {
     return <Loader />;

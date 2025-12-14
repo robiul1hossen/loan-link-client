@@ -4,8 +4,17 @@ import HowItWorks from "../HowItWorks ";
 import CustomerFeedback from "../../components/CustomerFeedback ";
 import WhyChooseLoanLink from "../../components/WhyChooseLoanLink ";
 import GetStartedCTA from "../../components/GetStartedCTA ";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Home = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: false,
+    });
+  }, []);
   return (
     <div className="max-w-6xl mx-auto">
       <Banner />

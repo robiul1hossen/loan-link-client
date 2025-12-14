@@ -6,7 +6,7 @@ const LoanCard = ({ loan }) => {
   const { _id, title, description, maxLimit, loanImage, interestRate } = loan;
   return (
     <div className="">
-      <div className="card card-sm shadow-sm ">
+      <div className="card card-sm shadow-sm">
         <div className="card-body">
           <h2 className="card-title font-bold">{title}</h2>
           <img

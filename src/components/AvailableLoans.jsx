@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Title from "./Title";
 import LoanCard from "./LoanCard";
-import AOS from "aos";
 import "aos/dist/aos.css";
 
 const AvailableLoans = () => {
@@ -16,12 +15,6 @@ const AvailableLoans = () => {
     },
   });
 
-  useEffect(() => {
-    AOS.init({
-      duration: 1000, // animation duration in ms
-      once: false, // whether animation should happen only once
-    });
-  }, []);
   return (
     <div>
       <div className="mt-12 mb-6">

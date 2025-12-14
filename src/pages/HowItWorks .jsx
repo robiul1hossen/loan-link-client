@@ -95,11 +95,13 @@ const HowItWorks = () => {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div
+          data-aos="zoom-in-up"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {steps.map((item) => (
             <div
               key={item.step}
-              className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+              className="bg-slate-50 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
               <span className="text-4xl font-bold text-blue-600">
                 {item.step}
               </span>
