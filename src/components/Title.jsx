@@ -4,7 +4,7 @@ const Title = ({ text1, text2, text3 }) => {
   return (
     <div>
       <div className="text-center">
-        <h2 className="text-4xl font-bold -mb-1 ">
+        <h2 className="text-2xl md:text-4xl font-bold -mb-1 ">
           <span className="text-primary">{text1}</span> <span>{text2}</span>
         </h2>
 
@@ -59,7 +59,7 @@ const Title = ({ text1, text2, text3 }) => {
     stroke-linecap: round; /* makes the end rounded */
   }
 `}</style>
-        <p className="w-1/2 mx-auto mt-1">{text3}</p>
+        <p className="w-full md:w-1/2 px-4 md:px-0 mx-auto mt-1">{text3}</p>
       </div>
     </div>
   );

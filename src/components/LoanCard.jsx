@@ -3,15 +3,16 @@ import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router";
 
 const LoanCard = ({ loan }) => {
-  const { _id, title, description, maxLimit, loanImage, interestRate } = loan;
+  const { _id, title, description, maxLimit, image, interestRate } = loan;
+  console.log(image);
   return (
-    <div className="">
+    <div className="rounded-2xl hover:bg-slate-50 hover:text-black duration-500 transition-all ease-in-out">
       <div className="card card-sm shadow-sm">
         <div className="card-body">
           <h2 className="card-title font-bold">{title}</h2>
           <img
             className="w-full h-[150px] object-cover hover:scale-105 transition duration-300 overflow-hidden cursor-pointer rounded-lg"
-            src={loanImage}
+            src={image}
             alt=""
           />
           <p>{description.slice(0, 60)}...</p>

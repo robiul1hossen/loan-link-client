@@ -56,9 +56,7 @@ const Banner = () => {
                   <Link to="/loan-form" className="btn btn-primary btn-lg">
                     Apply for Loan
                   </Link>
-                  <Link
-                    to="/loans"
-                    className="btn btn-outline btn-primary btn-lg">
+                  <Link to="/" className="btn btn-outline btn-primary btn-lg">
                     Explore Loans
                   </Link>
                 </div>
@@ -92,9 +90,7 @@ const Banner = () => {
                   <Link to="/loan-form" className="btn btn-secondary btn-lg">
                     Apply for Loan
                   </Link>
-                  <Link
-                    to="/loans"
-                    className="btn btn-outline btn-white btn-lg">
+                  <Link to="/" className="btn btn-outline btn-white btn-lg">
                     Explore Loans
                   </Link>
                 </div>
@@ -131,9 +127,7 @@ const Banner = () => {
                   <Link to="/loan-form" className="btn btn-success btn-lg">
                     Apply for Loan
                   </Link>
-                  <Link
-                    to="/loans"
-                    className="btn btn-outline btn-success btn-lg">
+                  <Link to="/" className="btn btn-outline btn-success btn-lg">
                     Explore Loans
                   </Link>
                 </div>

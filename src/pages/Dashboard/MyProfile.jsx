@@ -50,10 +50,8 @@ const MyProfile = () => {
           backgroundImage:
             "url('https://i.ibb.co.com/pvkXhKnQ/snowy-mountains-sunset.jpg')",
         }}>
-        {/* Blur shadow card */}
         <div className="backdrop-blur-xl bg-white/20 shadow-2xl rounded-3xl overflow-hidden flex flex-col md:flex-row max-w-4xl w-full">
-          {/* Left: Profile Image */}
-          <div className="md:w-1/2 w-full">
+          <div data-aos="fade-right" className="md:w-1/2 w-full">
             <img
               src={user.photoURL}
               alt="Profile"
@@ -61,8 +59,7 @@ const MyProfile = () => {
             />
           </div>
 
-          {/* Right: Info Section */}
-          <div className="md:w-1/2 w-full p-8 text-white">
+          <div data-aos="fade-left" className="md:w-1/2 w-full p-8 text-white">
             <h2 className="text-3xl font-bold mb-2 tracking-wide">
               {user.displayName}
             </h2>

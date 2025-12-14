@@ -18,7 +18,7 @@ const Navbar = () => {
       });
   };
   const links = (
-    <div className=" flex justify-center items-center">
+    <div className=" flex flex-col md:flex-row md:justify-center md:items-center">
       <NavLink to="/">
         <li className="font-semibold mx-3">Home</li>
       </NavLink>

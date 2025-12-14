@@ -12,12 +12,20 @@ import { NavLink, Outlet } from "react-router";
 import Footer from "../components/Footer";
 import useRole from "../hooks/useRole";
 import Loader from "../components/Loader";
-import { use } from "react";
+import { use, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const DashboardLayout = () => {
   const { role, roleLoading } = useRole();
   const { loading } = use(AuthContext);
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: false,
+    });
+  }, []);
   if (loading || roleLoading) {
     return <Loader />;
   }
