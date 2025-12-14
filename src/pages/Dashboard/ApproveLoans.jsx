@@ -21,9 +21,6 @@ const ApproveLoans = () => {
         <Title
           text1={"Approved"}
           text2={"Loans"}
-          text3={
-            "    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque eveniet earum fugit possimus, maxime dolore odio tenetur iure? Error, dignissimos!"
-          }
         />
       </div>
       <div className="overflow-x-auto">

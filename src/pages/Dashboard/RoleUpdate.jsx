@@ -64,13 +64,7 @@ const RoleUpdate = () => {
   return (
     <div>
       <div className="mt-5">
-        <Title
-          text1={"Update"}
-          text2={"Users"}
-          text3={
-            "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi quidem cupiditate sapiente nemo amet delectus quam quibusdam eaque a possimus?"
-          }
-        />
+        <Title text1={"Update"} text2={"Users"} />
       </div>
       <div className="max-w-xl mx-auto p-6">
         <div className="card shadow-xl bg-base-100 p-6">

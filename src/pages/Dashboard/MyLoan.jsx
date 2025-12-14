@@ -108,9 +108,6 @@ const MyLoan = () => {
         <Title
           text1={"My"}
           text2={"Loan"}
-          text3={
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum ut et repudiandae corporis quaerat quibusdam necessitatibus illo quae nostrum soluta."
-          }
         />
       </div>
       <div className="overflow-x-auto">

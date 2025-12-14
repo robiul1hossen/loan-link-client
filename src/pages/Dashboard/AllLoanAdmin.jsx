@@ -56,13 +56,7 @@ const AllLoanAdmin = () => {
   return (
     <div>
       <div className="mt-5">
-        <Title
-          text1={"All"}
-          text2={"Loans"}
-          text3={
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit aliquam provident quasi ipsa ab accusantium amet eveniet eligendi, dignissimos non?"
-          }
-        />
+        <Title text1={"All"} text2={"Loans"} />
       </div>
       <div className="overflow-x-auto">
         <table className="table">

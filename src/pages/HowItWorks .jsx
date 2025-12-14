@@ -1,55 +1,4 @@
-// import Title from "../components/Title";
-
 import Title from "../components/Title";
-
-// const HowItWorks = () => {
-//   return (
-//     <section className="py-20 bg-slate-50">
-//       <div className="max-w-7xl mx-auto px-4">
-//         {/* Heading */}
-//         <div className="text-center mb-14">
-//           <Title
-//             text1={" How It"}
-//             text2={" Works"}
-//             text3={"Get your loan in a few simple steps"}
-//           />
-
-//           <p className="mt-3 text-slate-600"></p>
-//         </div>
-
-//         {/* Steps */}
-//         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-//           <div className="bg-white p-6 rounded-2xl shadow-sm text-center">
-//             <span className="text-4xl font-bold text-blue-600">01</span>
-//             <h3 className="mt-4 text-xl font-semibold">Browse Loans</h3>
-//             <p className="mt-2 text-slate-600">
-//               Explore loan options with transparent interest rates and limits.
-//             </p>
-//           </div>
-
-//           <div className="bg-white p-6 rounded-2xl shadow-sm text-center">
-//             <span className="text-4xl font-bold text-blue-600">02</span>
-//             <h3 className="mt-4 text-xl font-semibold">Apply Online</h3>
-//             <p className="mt-2 text-slate-600">
-//               Submit your loan application securely in just a few clicks.
-//             </p>
-//           </div>
-
-//           <div className="bg-white p-6 rounded-2xl shadow-sm text-center">
-//             <span className="text-4xl font-bold text-blue-600">03</span>
-//             <h3 className="mt-4 text-xl font-semibold">Get Approved</h3>
-//             <p className="mt-2 text-slate-600">
-//               Admin reviews your application and updates your status in real
-//               time.
-//             </p>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default HowItWorks;
 
 const HowItWorks = () => {
   const steps = [
@@ -83,18 +32,12 @@ const HowItWorks = () => {
   return (
     <section className="py-20 ">
       <div className="max-w-7xl mx-auto px-4">
-        {/* Header */}
         <div className="text-center mb-14">
-          <Title
-            text1={"How It"}
-            text2={" Works"}
-            text3={" Get your loan approved in 5 simple steps"}
-          />
+          <Title text1={"How It"} text2={" Works"} />
 
           <p className="mt-3 text-slate-600"></p>
         </div>
 
-        {/* Cards */}
         <div
           data-aos="zoom-in-up"
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

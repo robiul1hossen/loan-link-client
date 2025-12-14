@@ -12,6 +12,7 @@ const AddLoan = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
   // TODO: set error message
   const categories = [
@@ -52,6 +53,7 @@ const AddLoan = () => {
       .post("/loans", data)
       .then((res) => {
         if (res.data.insertedId) {
+          reset();
           toast.success("Loan Added");
         }
       })
@@ -63,13 +65,7 @@ const AddLoan = () => {
   return (
     <div>
       <div className="mt-5">
-        <Title
-          text1={"Add"}
-          text2={"Loan"}
-          text3={
-            "  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente obcaecati tenetur ea praesentium! Fuga sit enim, necessitatibus iste dicta placeat."
-          }
-        />
+        <Title text1={"Add"} text2={"Loan"} />
       </div>
       <form onSubmit={handleSubmit(handleAddLoan)} className="p-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -83,7 +79,6 @@ const AddLoan = () => {
             />
           </div>
 
-          {/* TITLE */}
           <div>
             <label className="font-semibold">Title</label>
             <input
@@ -93,7 +88,6 @@ const AddLoan = () => {
             />
           </div>
 
-          {/* CATEGORY */}
           <div>
             <label className="font-semibold">Category</label>
             <select
@@ -107,7 +101,6 @@ const AddLoan = () => {
             </select>
           </div>
 
-          {/* INTEREST RATE */}
           <div>
             <label className="font-semibold">Interest Rate (min-max)</label>
             <input
@@ -117,7 +110,6 @@ const AddLoan = () => {
             />
           </div>
 
-          {/* MAX LIMIT */}
           <div>
             <label className="font-semibold">Max Limit</label>
             <input
@@ -126,7 +118,7 @@ const AddLoan = () => {
               {...register("maxLimit", { required: true })}
             />
           </div>
-          {/* PROCESSING FEE */}
+
           <div>
             <label className="font-semibold">Processing Fee (%)</label>
             <input
@@ -135,7 +127,7 @@ const AddLoan = () => {
               {...register("processingFee", { required: true })}
             />
           </div>
-          {/* CREATED BY */}
+
           <div>
             <label className="font-semibold">Created By</label>
             <input
@@ -146,7 +138,7 @@ const AddLoan = () => {
               {...register("createdBy", { required: true })}
             />
           </div>
-          {/* CREATOR EMail */}
+
           <div>
             <label className="font-semibold">Creator Email</label>
             <input
@@ -158,7 +150,7 @@ const AddLoan = () => {
             />
           </div>
         </div>
-        {/* DESCRIPTION */}
+
         <div>
           <label className="font-semibold">Description</label>
           <textarea
@@ -167,7 +159,6 @@ const AddLoan = () => {
             {...register("description", { required: true })}></textarea>
         </div>
 
-        {/* EMI PLANS (checkbox) */}
         <div className="mt-6">
           <label className="font-semibold">EMI Plans</label>
           <div className="flex gap-4 mt-2 flex-wrap">
@@ -177,7 +168,6 @@ const AddLoan = () => {
                   className="outline-none"
                   type="checkbox"
                   value={num}
-                  //   defaultChecked={loan.emiPlans.includes(num)}
                   {...register("emiPlans")}
                 />
                 {num} Months
@@ -221,7 +211,6 @@ const AddLoan = () => {
           </div>
         </div>
 
-        {/* SUBMIT BUTTON */}
         <div className="text-center mt-10">
           <button className="btn btn-primary px-8" type="submit">
             Add A Loan

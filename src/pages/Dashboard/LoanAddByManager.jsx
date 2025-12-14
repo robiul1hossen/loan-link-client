@@ -80,9 +80,6 @@ const LoanAddByManager = () => {
         <Title
           text1={"Loan Added"}
           text2={"By Manager"}
-          text3={
-            "  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae a amet nobis vel quod accusantium non. Alias quisquam reprehenderit dolore!"
-          }
         />
       </div>
 

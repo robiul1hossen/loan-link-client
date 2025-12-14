@@ -18,13 +18,7 @@ const RejectLoans = () => {
   return (
     <div>
       <div>
-        <Title
-          text1={"Approved"}
-          text2={"Loans"}
-          text3={
-            "    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque eveniet earum fugit possimus, maxime dolore odio tenetur iure? Error, dignissimos!"
-          }
-        />
+        <Title text1={"Approved"} text2={"Loans"} />
       </div>
       <div className="overflow-x-auto">
         <table className="table table-zebra">

@@ -18,13 +18,7 @@ const AvailableLoans = () => {
   return (
     <div>
       <div className="mt-12 mb-6">
-        <Title
-          text1={"Available"}
-          text2={"Loans"}
-          text3={
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique nisi sit iure, ducimus ea quidem provident omnis unde optio quasi?"
-          }
-        />
+        <Title text1={"Available"} text2={"Loans"} />
       </div>
       <div
         data-aos="fade-up"

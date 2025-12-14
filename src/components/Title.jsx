@@ -1,6 +1,6 @@
 import React from "react";
 
-const Title = ({ text1, text2, text3 }) => {
+const Title = ({ text1, text2 }) => {
   return (
     <div>
       <div className="text-center">
@@ -59,7 +59,10 @@ const Title = ({ text1, text2, text3 }) => {
     stroke-linecap: round; /* makes the end rounded */
   }
 `}</style>
-        <p className="w-full md:w-1/2 px-4 md:px-0 mx-auto mt-1">{text3}</p>
+        <p className="w-full md:w-1/2 px-4 md:px-0 mx-auto mt-1">
+          “Discover the best loans tailored for you, offering flexible terms,
+          competitive rates, and fast approvals.”
+        </p>
       </div>
     </div>
   );

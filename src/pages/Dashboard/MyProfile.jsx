@@ -36,13 +36,7 @@ const MyProfile = () => {
   return (
     <div>
       <div className="mt-5">
-        <Title
-          text1={"My"}
-          text2={"Profile"}
-          text3={
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum ut et repudiandae corporis quaerat quibusdam necessitatibus illo quae nostrum soluta."
-          }
-        />
+        <Title text1={"My"} text2={"Profile"} />
       </div>
       <div
         className="min-h-screen flex items-center justify-center bg-cover bg-center p-4"

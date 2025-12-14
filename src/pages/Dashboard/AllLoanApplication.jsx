@@ -43,9 +43,6 @@ const AllLoanApplication = () => {
         <Title
           text1={"All Loan"}
           text2={"Applications"}
-          text3={
-            "    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum dolore architecto omnis animi mollitia totam voluptate atque doloribus voluptates aspernatur.z"
-          }
         />
       </div>
       <div className="flex justify-start px-4 md:justify-end ">

@@ -48,13 +48,7 @@ const ManageUsers = () => {
   return (
     <div>
       <div className="mt-5">
-        <Title
-          text1={"Manage"}
-          text2={"Users"}
-          text3={
-            "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit perferendis, numquam animi mollitia ab ducimus. Perspiciatis error nostrum officiis culpa!"
-          }
-        />
+        <Title text1={"Manage"} text2={"Users"} />
         <form onSubmit={handleFilter}>
           <div className="flex flex-col justify-end items-end">
             <div className="flex gap-1 items-center mt-4">

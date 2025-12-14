@@ -14,10 +14,12 @@ const ApplyLoanForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
   const handleLoanForm = (data) => {
     axiosSecure.post("/loan-application", data).then((res) => {
       if (res.data.insertedId) {
+        reset();
         toast.success("Your application has been submitted");
       }
     });

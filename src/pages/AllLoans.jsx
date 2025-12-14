@@ -35,9 +35,6 @@ const AllLoans = () => {
       <Title
         text1={"All Available"}
         text2={"Loans"}
-        text3={
-          "  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae a amet nobis vel quod accusantium non. Alias quisquam reprehenderit dolore!"
-        }
       />
       <div className=" gap-5 ">
         <div className="md:text-right mb-4 ps-4 md:ps-0">

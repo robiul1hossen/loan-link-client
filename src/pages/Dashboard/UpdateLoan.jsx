@@ -34,13 +34,7 @@ const UpdateLoan = () => {
   return (
     <div>
       <div>
-        <Title
-          text1={"Update"}
-          text2={"Loan"}
-          text3={
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae neque, consequuntur nihil quae nemo tempora harum consectetur tempore dignissimos optio!"
-          }
-        />
+        <Title text1={"Update"} text2={"Loan"} />
       </div>
       <form
         onSubmit={handleSubmit(handleUpdateLoan)}
