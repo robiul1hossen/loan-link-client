@@ -14,7 +14,7 @@ const AllLoans = () => {
   const { data: loans = [], isLoading } = useQuery({
     queryKey: ["loans", page],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/loans/all?page=${page}&limit=6`);
+      const res = await axiosSecure.get(`/loans/all?page=${page}&limit=10`);
       return res.data;
     },
   });
@@ -32,10 +32,7 @@ const AllLoans = () => {
 
   return (
     <div className="max-w-6xl mx-auto">
-      <Title
-        text1={"All Available"}
-        text2={"Loans"}
-      />
+      <Title text1={"All Available"} text2={"Loans"} />
       <div className=" gap-5 ">
         <div className="md:text-right mb-4 ps-4 md:ps-0">
           <input
