@@ -16,7 +16,7 @@ const Home = () => {
     });
   }, []);
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-11/12 mx-auto">
       <Banner />
       <AvailableLoans />
       <HowItWorks />

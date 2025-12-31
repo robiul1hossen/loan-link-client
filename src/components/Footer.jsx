@@ -4,7 +4,7 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <div className="max-w-6xl mx-auto mt-20">
+    <div className="max-w-11/12 mx-auto mt-20">
       <footer className="footer sm:footer-horizontal  text-base-content p-10">
         <nav>
           <h6 className="footer-title">Services</h6>

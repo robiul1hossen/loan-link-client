@@ -7,7 +7,7 @@ const AuthRoute = () => {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col-reverse md:flex-row justify-center items-center max-w-6xl mx-auto ">
+      <div className="flex flex-col-reverse md:flex-row justify-center items-center max-w-11/12 mx-auto ">
         <div className="w-full">
           <Outlet />
         </div>

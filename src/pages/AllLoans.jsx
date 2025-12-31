@@ -31,7 +31,7 @@ const AllLoans = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-11/12 mx-auto">
       <Title text1={"All Available"} text2={"Loans"} />
       <div className=" gap-5 ">
         <div className="md:text-right mb-4 ps-4 md:ps-0">
@@ -42,7 +42,7 @@ const AllLoans = () => {
             className="input outline-none "
           />
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
           {loansData?.map((loan) => (
             <LoanCard key={loan._id} loan={loan} />
           ))}

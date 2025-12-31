@@ -10,10 +10,11 @@ const AvailableLoans = () => {
   const { data: loans = [] } = useQuery({
     queryKey: ["loans"],
     queryFn: async () => {
-      const res = axiosSecure.get("/loans/featured");
-      return (await res).data;
+      const res = await axiosSecure.get("/loans/featured");
+      return res.data;
     },
   });
+  console.log(loans);
 
   return (
     <div>
@@ -22,7 +23,7 @@ const AvailableLoans = () => {
       </div>
       <div
         data-aos="fade-up"
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
         {loans.map((loan) => (
           <LoanCard key={loan._id} loan={loan} />
         ))}

@@ -4,18 +4,17 @@ import { Link } from "react-router";
 
 const LoanCard = ({ loan }) => {
   const { _id, title, description, maxLimit, image, interestRate } = loan;
-  console.log(image);
   return (
     <div className="rounded-2xl hover:bg-slate-50 hover:text-black duration-500 transition-all ease-in-out">
       <div className="card card-sm shadow-sm">
         <div className="card-body">
-          <h2 className="card-title font-bold">{title}</h2>
+          <h2 className="card-title font-bold">{title.slice(0, 15)}</h2>
           <img
             className="w-full h-[150px] object-cover hover:scale-105 transition duration-300 overflow-hidden cursor-pointer rounded-lg"
             src={image}
             alt=""
           />
-          <p>{description.slice(0, 60)}...</p>
+          <p>{description.slice(0, 20)}...</p>
           <div className=" justify-between items-center">
             <p className="text-[13px] font-medium mb-2">
               maxLimit: ${maxLimit} with {interestRate}% interest

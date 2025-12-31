@@ -10,7 +10,7 @@ const Title = ({ text1, text2 }) => {
 
         <svg
           viewBox="0 0 600 120"
-          className="w-72 md:w-52 mx-auto animate-draw"
+          className="w-40 md:w-52 mx-auto animate-draw"
           fill="none"
           xmlns="http://www.w3.org/2000/svg">
           <defs>
