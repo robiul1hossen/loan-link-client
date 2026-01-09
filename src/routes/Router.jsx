@@ -28,6 +28,7 @@ import LoanAddByManager from "../pages/Dashboard/LoanAddByManager";
 import EditLoanByManager from "../pages/Dashboard/EditLoanByManager";
 import AboutUs from "../components/AboutUs";
 import ContactUs from "../components/ContactUs ";
+import Overview from "../pages/Dashboard/Overview";
 
 export const router = createBrowserRouter([
   {
@@ -127,6 +128,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AllLoanAdmin />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "admin-overview",
+        element: (
+          <AdminRoute>
+            <Overview />
           </AdminRoute>
         ),
       },

@@ -31,7 +31,7 @@ const HowItWorks = () => {
 
   return (
     <section className="py-20 ">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className=" mx-auto px-4">
         <div className="text-center mb-14">
           <Title text1={"How It"} text2={" Works"} />
 

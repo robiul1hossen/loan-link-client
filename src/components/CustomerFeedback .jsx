@@ -74,7 +74,7 @@ const CustomerFeedback = () => {
 
   return (
     <section className="py-20 ">
-      <div className="max-w-4xl mx-auto px-4 text-center">
+      <div className=" mx-auto px-4 text-center">
         <div className="mb-14">
           <Title text1={"What Our"} text2={" Customers Say"} />
         </div>

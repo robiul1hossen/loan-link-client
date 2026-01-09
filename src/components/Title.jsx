@@ -2,7 +2,7 @@ import React from "react";
 
 const Title = ({ text1, text2 }) => {
   return (
-    <div>
+    <div className="w-full mb-6 bg-linear-to-r from-[#090040] to-[#471396] text-white py-10">
       <div className="text-center">
         <h2 className="text-2xl md:text-4xl font-bold -mb-1 ">
           {text1} {text2}

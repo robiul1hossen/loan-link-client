@@ -4,24 +4,24 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <div className="max-w-11/12 mx-auto mt-20 text-white">
-      <footer className="footer sm:footer-horizontal  text-base-content p-10 text-white">
+    <div className=" mx-auto mt-20 text-white">
+      <footer className="footer sm:footer-horizontal p-10 text-white">
         <nav>
-          <h6 className="footer-title">Services</h6>
+          <h6 className="footer-title text-white">Services</h6>
           <a className="link link-hover ">Branding</a>
           <a className="link link-hover">Design</a>
           <a className="link link-hover">Marketing</a>
           <a className="link link-hover">Advertisement</a>
         </nav>
         <nav>
-          <h6 className="footer-title">Company</h6>
+          <h6 className="footer-title text-white">Company</h6>
           <a className="link link-hover">About us</a>
           <a className="link link-hover">Contact</a>
           <a className="link link-hover">Jobs</a>
           <a className="link link-hover">Press kit</a>
         </nav>
         <nav>
-          <h6 className="footer-title">Social</h6>
+          <h6 className="footer-title text-white">Social</h6>
           <div className="grid grid-flow-col gap-4">
             <a>
               <FaXTwitter className="text-primary cursor-pointer" size={20} />

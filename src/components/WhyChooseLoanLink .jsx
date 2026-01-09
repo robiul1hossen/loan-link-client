@@ -26,7 +26,7 @@ const WhyChooseLoanLink = () => {
 
   return (
     <section className="py-20 ">
-      <div className="max-w-7xl mx-auto px-4 text-center">
+      <div className=" mx-auto px-4 text-center">
         <div className="mb-14">
           <Title text1={" Why Choose"} text2={"LoanLink"} />
         </div>

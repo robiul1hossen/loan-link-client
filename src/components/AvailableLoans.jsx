@@ -17,8 +17,8 @@ const AvailableLoans = () => {
   console.log(loans);
 
   return (
-    <div>
-      <div className="mt-12 mb-6">
+    <div className="px-4">
+      <div className="mt-12 mb-6 ">
         <Title text1={"Available"} text2={"Loans"} />
       </div>
       <div

@@ -32,7 +32,7 @@ const Navbar = () => {
         <li className="font-semibold mx-3">Contact</li>
       </NavLink>
       {user && (
-        <NavLink to="/dashboard/my-profile">
+        <NavLink to="/dashboard">
           <li className="font-semibold mx-3">Dashboard</li>
         </NavLink>
       )}
@@ -74,7 +74,7 @@ const Navbar = () => {
   return (
     <div className="sticky top-0 z-50  mx-auto">
       <div className="navbar bg-[#471396] shadow-sm ">
-        <div className="md:px-10 w-full md:flex items-center justify-center">
+        <div className="md:px-4 w-full md:flex items-center justify-center">
           <div className="navbar-start">
             <div className="dropdown">
               <div

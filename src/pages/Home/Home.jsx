@@ -16,14 +16,14 @@ const Home = () => {
     });
   }, []);
   return (
-    <div className="max-w-11/12 mx-auto">
+    <>
       <Banner />
       <AvailableLoans />
       <HowItWorks />
       <CustomerFeedback />
       <WhyChooseLoanLink />
       <GetStartedCTA />
-    </div>
+    </>
   );
 };
 

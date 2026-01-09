@@ -8,6 +8,8 @@ import {
 import { FcApproval } from "react-icons/fc";
 import { CgProfile } from "react-icons/cg";
 import { FaRegAddressBook, FaUsers } from "react-icons/fa";
+import { GrOverview } from "react-icons/gr";
+
 import { NavLink, Outlet } from "react-router";
 import Footer from "../components/Footer";
 import useRole from "../hooks/useRole";
@@ -108,6 +110,17 @@ const DashboardLayout = () => {
               </NavLink>
               {role === "Admin" && (
                 <>
+                  <NavLink to="/dashboard/admin-overview">
+                    <li>
+                      <button
+                        className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                        data-tip="Overview">
+                        {/* Home icon */}
+                        <GrOverview size={16} />
+                        <span className="is-drawer-close:hidden">Overview</span>
+                      </button>
+                    </li>
+                  </NavLink>
                   <NavLink to="/dashboard/all-loans-admin">
                     <li>
                       <button
