@@ -26,6 +26,7 @@ import RejectLoans from "../pages/Dashboard/RejectLoans";
 import MyProfile from "../pages/Dashboard/MyProfile";
 import LoanAddByManager from "../pages/Dashboard/LoanAddByManager";
 import EditLoanByManager from "../pages/Dashboard/EditLoanByManager";
+import AboutUs from "../components/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
       {
         path: "loan-form",
         Component: ApplyLoanForm,
+      },
+      {
+        path: "about-us",
+        Component: AboutUs,
       },
     ],
   },
