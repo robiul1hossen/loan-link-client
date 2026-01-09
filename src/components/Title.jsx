@@ -5,7 +5,7 @@ const Title = ({ text1, text2 }) => {
     <div>
       <div className="text-center">
         <h2 className="text-2xl md:text-4xl font-bold -mb-1 ">
-          <span className="text-primary">{text1}</span> <span>{text2}</span>
+          {text1} {text2}
         </h2>
 
         <svg

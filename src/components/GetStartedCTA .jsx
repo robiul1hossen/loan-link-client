@@ -9,7 +9,7 @@ const GetStartedCTA = () => {
         </p>
         <a
           href="/loan-form"
-          className="inline-block bg-[#090040] text-white font-semibold px-8 py-4 rounded-full shadow hover:shadow-lg transition">
+          className="inline-block bg-[#090040] text-white border-[#e5e5e5] font-semibold px-8 py-4 rounded-full shadow hover:shadow-lg transition">
           Apply Now
         </a>
       </div>

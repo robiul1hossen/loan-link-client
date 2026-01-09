@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../context/AuthContext";
 import { Link, useLocation, useNavigate } from "react-router";
@@ -12,6 +12,8 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
+  const [demoEmail, setDemoEmail] = useState("");
+  const [demoPass, setDemoPass] = useState("");
   const {
     register,
     handleSubmit,
@@ -65,6 +67,15 @@ const Login = () => {
       .catch((error) => toast.error(error.message));
   };
 
+  const handleLoginAsAdmin = () => {
+    setDemoEmail("siam@ahmed.com");
+    setDemoPass("123456aA#");
+  };
+  const handleLoginAsManager = () => {
+    setDemoEmail("habib@ullah.com");
+    setDemoPass("123456aA#");
+  };
+
   return (
     <div>
       <h2 className="text-2xl font-bold text-center mb-4">Login Now!</h2>
@@ -74,6 +85,7 @@ const Login = () => {
             <label className="label text-white">Email</label>
             <input
               type="email"
+              defaultValue={demoEmail}
               {...register("email", { required: true })}
               className="input outline-none border border-[#B13BFF] w-full shadow-xl bg-black text-white placeholder-white"
               placeholder="Email"
@@ -84,6 +96,7 @@ const Login = () => {
             <label className="label text-white">Password</label>
             <input
               type="password"
+              defaultValue={demoPass}
               {...register("password", { required: true })}
               className="input outline-none border border-[#B13BFF] w-full shadow-xl bg-black text-white placeholder-white"
               placeholder="Password"
@@ -132,6 +145,18 @@ const Login = () => {
             </Link>
           </p>
         </form>
+        <div className="flex flex-col md:flex-row gap-4 w-full">
+          <button
+            onClick={handleLoginAsAdmin}
+            className="btn bg-[#471396] border-[#e5e5e5] text-white mt-4">
+            Demo Login as Admin
+          </button>
+          <button
+            onClick={handleLoginAsManager}
+            className="btn bg-[#471396] border-[#e5e5e5] text-white mt-4">
+            Demo Login as Manager
+          </button>
+        </div>
       </div>
     </div>
   );
