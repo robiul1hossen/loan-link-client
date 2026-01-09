@@ -27,6 +27,7 @@ import MyProfile from "../pages/Dashboard/MyProfile";
 import LoanAddByManager from "../pages/Dashboard/LoanAddByManager";
 import EditLoanByManager from "../pages/Dashboard/EditLoanByManager";
 import AboutUs from "../components/AboutUs";
+import ContactUs from "../components/ContactUs ";
 
 export const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ export const router = createBrowserRouter([
       {
         path: "about-us",
         Component: AboutUs,
+      },
+      {
+        path: "contact-us",
+        Component: ContactUs,
       },
     ],
   },

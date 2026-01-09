@@ -28,7 +28,7 @@ const Navbar = () => {
       <NavLink to="/about-us">
         <li className="font-semibold mx-3">About Us</li>
       </NavLink>
-      <NavLink to="/contact">
+      <NavLink to="/contact-us">
         <li className="font-semibold mx-3">Contact</li>
       </NavLink>
       {user && (
