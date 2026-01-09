@@ -104,14 +104,14 @@ const Register = () => {
   return (
     <div>
       <h2 className="text-2xl font-bold text-center mb-4">Sign Up Now!</h2>
-      <div className="px-6 md:px-20 ">
+      <div className="px-6 md:px-20 min-h-screen">
         <form onSubmit={handleSubmit(handleRegister)}>
           <fieldset className="fieldset">
             <label className="label">Name</label>
             <input
               type="text"
               {...register("name", { required: true })}
-              className="input outline-none w-full shadow-xl"
+              className="input outline-none border border-[#B13BFF] w-full shadow-xl  bg-black text-white placeholder-white"
               placeholder="Your Name"
             />
             {errors.name && (
@@ -122,7 +122,7 @@ const Register = () => {
             <input
               type="email"
               {...register("email", { required: true })}
-              className="input outline-none w-full shadow-xl"
+              className="input outline-none border border-[#B13BFF] w-full shadow-xl  bg-black text-white placeholder-white"
               placeholder="Email"
             />
             {errors.email && (
@@ -132,7 +132,7 @@ const Register = () => {
             <input
               type="password"
               {...register("password", { required: true })}
-              className="input outline-none w-full shadow-xl"
+              className="input outline-none w-full shadow-xl border border-[#B13BFF] bg-black text-white placeholder-white"
               placeholder="Password"
             />
             {errors.password && (
@@ -142,12 +142,12 @@ const Register = () => {
               <a className="link link-hover">Forgot password?</a>
             </div>
             <div className="flex flex-col md:flex-row gap-2 items-center">
-              <div className="flex-1">
+              <div className="flex-1 w-full">
                 <label className="label">Photo</label>
                 <input
                   type="file"
                   {...register("photo", { required: true })}
-                  className="file-input file-input-primary outline-none w-full shadow-xl"
+                  className="file-input file-input-primary outline-none w-full shadow-xl  bg-black text-white placeholder-white"
                 />
                 {errors.photo && (
                   <span className="text-xs text-red-500">
@@ -155,10 +155,10 @@ const Register = () => {
                   </span>
                 )}
               </div>
-              <div className="flex-1">
+              <div className="flex-1 w-full">
                 <label className="label">Select Your Role</label>
                 <select
-                  className="select select-primary shadow-xl"
+                  className="select select-primary shadow-xl border border-[#471396]  bg-black text-white placeholder-white"
                   defaultValue=""
                   {...register("role", { required: true })}>
                   <option value="" disabled>
@@ -174,12 +174,12 @@ const Register = () => {
               </div>
             </div>
           </fieldset>
-          <button className="btn btn-primary mt-4 w-full shadow-xl">
+          <button className="btn bg-[#471396] border-[#e5e5e5] text-white mt-4 w-full shadow-xl">
             Sign up
           </button>
           <button
             onClick={handleGoogleLogin}
-            className="btn bg-white text-black border-[#e5e5e5] shadow-xl w-full mt-2">
+            className="btn bg-[#471396] text-white border-[#e5e5e5] shadow-xl w-full mt-2">
             <svg
               aria-label="Google logo"
               width="16"
@@ -206,7 +206,7 @@ const Register = () => {
           </button>
           <p>
             Already have an account? Please{" "}
-            <Link to="/auth/login" className="text-primary">
+            <Link to="/auth/login" className="text-[#B13BFF]">
               Login
             </Link>
           </p>

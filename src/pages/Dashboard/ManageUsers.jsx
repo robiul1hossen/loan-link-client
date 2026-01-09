@@ -103,10 +103,10 @@ const ManageUsers = () => {
         </form>
 
         <div className="overflow-x-auto">
-          <table className="table table-zebra">
+          <table className="table ">
             {/* head */}
             <thead>
-              <tr>
+              <tr className="text-white">
                 <th></th>
                 <th>Name</th>
                 <th>Email</th>

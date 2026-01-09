@@ -40,10 +40,7 @@ const AllLoanApplication = () => {
   return (
     <div>
       <div className="mt-5">
-        <Title
-          text1={"All Loan"}
-          text2={"Applications"}
-        />
+        <Title text1={"All Loan"} text2={"Applications"} />
       </div>
       <div className="flex justify-start px-4 md:justify-end ">
         <div className="flex flex-col w-1/2 md:w-1/4">
@@ -65,10 +62,10 @@ const AllLoanApplication = () => {
         </div>
       </div>
       <div className="overflow-x-auto">
-        <table className="table table-zebra">
+        <table className="table">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="text-white">
               <th></th>
               <th>loan Id</th>
               <th>Applicant</th>
@@ -111,7 +108,7 @@ const AllLoanApplication = () => {
       <dialog
         ref={viewDetailsModalRef}
         className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box">
+        <div className="modal-box text-white bg-[#090040]">
           <h3 className="font-bold text-lg">{selectedLoan.title}</h3>
           <div className="flex flex-col md:flex-row gap-2">
             <div>

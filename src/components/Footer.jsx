@@ -4,11 +4,11 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <div className="max-w-11/12 mx-auto mt-20">
-      <footer className="footer sm:footer-horizontal  text-base-content p-10">
+    <div className="max-w-11/12 mx-auto mt-20 text-white">
+      <footer className="footer sm:footer-horizontal  text-base-content p-10 text-white">
         <nav>
           <h6 className="footer-title">Services</h6>
-          <a className="link link-hover">Branding</a>
+          <a className="link link-hover ">Branding</a>
           <a className="link link-hover">Design</a>
           <a className="link link-hover">Marketing</a>
           <a className="link link-hover">Advertisement</a>
@@ -37,7 +37,7 @@ const Footer = () => {
       </footer>
       <footer className="footer sm:footer-horizontal footer-center  text-base-content p-4">
         <aside>
-          <p>
+          <p className="text-white">
             Copyright © {new Date().getFullYear()} - All right reserved by Loan
             Link Ltd
           </p>

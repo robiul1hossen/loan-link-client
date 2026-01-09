@@ -4,6 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router";
 import { toast } from "react-toastify";
+import Title from "../components/Title";
 
 const ApplyLoanForm = () => {
   const { state } = useLocation();
@@ -26,6 +27,7 @@ const ApplyLoanForm = () => {
   };
   return (
     <div className="max-w-11/12 mx-auto">
+      <Title text1={"Apply For"} text2={"Your Loan"} />
       <form onSubmit={handleSubmit(handleLoanForm)}>
         <div className="card-body">
           <fieldset className="fieldset">
@@ -35,7 +37,7 @@ const ApplyLoanForm = () => {
                 <input
                   type="text"
                   {...register("firstName", { required: true })}
-                  className="input outline-none w-full"
+                  className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                   placeholder="First Name"
                 />
                 {errors.firstName && (
@@ -49,7 +51,7 @@ const ApplyLoanForm = () => {
                 <input
                   type="text"
                   {...register("lastName", { required: true })}
-                  className="input outline-none w-full"
+                  className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                   placeholder="Last Name"
                 />
                 {errors.lastName && (
@@ -65,7 +67,7 @@ const ApplyLoanForm = () => {
                   defaultValue={user?.email}
                   readOnly
                   {...register("email", { required: true })}
-                  className="input outline-none w-full"
+                  className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                   placeholder="Email"
                 />
               </div>
@@ -74,7 +76,7 @@ const ApplyLoanForm = () => {
                 <input
                   type="text"
                   {...register("number", { required: true })}
-                  className="input outline-none w-full"
+                  className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                   placeholder="Contact Number"
                 />
                 {errors.number && (
@@ -88,7 +90,7 @@ const ApplyLoanForm = () => {
                 <input
                   type="text"
                   {...register("nid", { required: true })}
-                  className="input outline-none w-full"
+                  className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                   placeholder="National ID / Passport Number"
                 />
                 {errors.nid && (
@@ -102,7 +104,7 @@ const ApplyLoanForm = () => {
                 <input
                   type="text"
                   {...register("incomeSource", { required: true })}
-                  className="input outline-none w-full"
+                  className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                   placeholder="Your income source"
                 />
                 {errors.incomeSource && (
@@ -116,7 +118,7 @@ const ApplyLoanForm = () => {
                 <input
                   type="number"
                   {...register("monthlyIncome", { required: true })}
-                  className="input outline-none w-full"
+                  className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                   placeholder="Your monthly income"
                 />
                 {errors.monthlyIncome && (
@@ -132,7 +134,7 @@ const ApplyLoanForm = () => {
                   defaultValue={state?.title}
                   readOnly
                   {...register("title", { required: true })}
-                  className="input outline-none w-full"
+                  className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                   placeholder="Loan Title"
                 />
                 {errors.title && (
@@ -148,7 +150,7 @@ const ApplyLoanForm = () => {
                   defaultValue={state?.category}
                   readOnly
                   {...register("category", { required: true })}
-                  className="input outline-none w-full"
+                  className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                   placeholder="Loan category"
                 />
                 {errors.category && (
@@ -164,7 +166,7 @@ const ApplyLoanForm = () => {
                   defaultValue={state?.amount}
                   readOnly
                   {...register("loanAmount", { required: true })}
-                  className="input outline-none w-full"
+                  className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                   placeholder="Your desire loan amount"
                 />
                 {errors.loanAmount && (
@@ -180,7 +182,7 @@ const ApplyLoanForm = () => {
                   defaultValue={state?.interestPar}
                   readOnly
                   {...register("interest", { required: true })}
-                  className="input outline-none w-full"
+                  className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                   placeholder="Your desire loan amount"
                 />
                 {errors.interest && (
@@ -196,7 +198,7 @@ const ApplyLoanForm = () => {
                   defaultValue={state?.totalPay}
                   readOnly
                   {...register("totalPay", { required: true })}
-                  className="input outline-none w-full"
+                  className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                   placeholder="Total Pay"
                 />
                 {errors.totalPay && (
@@ -210,7 +212,7 @@ const ApplyLoanForm = () => {
                 <input
                   type="text"
                   {...register("loanReason", { required: true })}
-                  className="input outline-none w-full"
+                  className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                   placeholder="Describe your loan reason"
                 />
                 {errors.loanReason && (
@@ -224,7 +226,7 @@ const ApplyLoanForm = () => {
                 <input
                   type="text"
                   {...register("address", { required: true })}
-                  className="input outline-none w-full"
+                  className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                   placeholder="Your Address"
                 />
                 {errors.address && (
@@ -241,12 +243,14 @@ const ApplyLoanForm = () => {
                 rows="10"
                 cols="50"
                 {...register("notes")}
-                className="input outline-none w-full"
+                className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                 placeholder="Add a note"
               />
             </div>
             <div className="text-center">
-              <button className="btn btn-primary mt-4 px-12">Apply</button>
+              <button className="btn bg-[#471396] border-[#e5e5e5] text-white mt-4 px-12">
+                Apply
+              </button>
             </div>
           </fieldset>
         </div>

@@ -39,10 +39,10 @@ const WhyChooseLoanLink = () => {
           {benefits.map((b, idx) => (
             <div
               key={idx}
-              className="bg-slate-50 p-6 rounded-2xl shadow hover:shadow-lg transition text-center">
+              className="bg-[#471396] p-6 rounded-2xl shadow hover:shadow-lg transition text-center">
               <div className="text-4xl mb-4">{b.icon}</div>
               <h3 className="text-xl font-semibold mb-2">{b.title}</h3>
-              <p className="text-slate-600 text-sm">{b.desc}</p>
+              <p className="text-white text-sm">{b.desc}</p>
             </div>
           ))}
         </div>

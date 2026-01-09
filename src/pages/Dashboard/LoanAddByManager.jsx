@@ -77,19 +77,16 @@ const LoanAddByManager = () => {
   return (
     <div>
       <div className="mt-5">
-        <Title
-          text1={"Loan Added"}
-          text2={"By Manager"}
-        />
+        <Title text1={"Loan Added"} text2={"By Manager"} />
       </div>
 
       <div className="flex flex-col justify-end items-end">
-        <div className="mt-4 w-[265px]">
+        <div className="mt-4 w-[265px] ">
           <div className="w-full ">
             <select
               onChange={(e) => handleFilter(e)}
               defaultValue=" Pick a Category"
-              className="select outline-none w-full">
+              className="select outline-none w-full border border-[#B13BFF]  bg-black text-white placeholder-white">
               <option defaultValue=" Pick a Category" disabled={true}>
                 Pick a Category
               </option>
@@ -106,16 +103,16 @@ const LoanAddByManager = () => {
             type="text"
             onChange={(e) => handleSearch(e)}
             placeholder="Search Loans"
-            className="input outline-none w-[265px]"
+            className="input outline-none w-[265px] border border-[#B13BFF]  bg-black text-white placeholder-white"
           />
         </div>
       </div>
 
       <div className="overflow-x-auto">
-        <table className="table table-zebra">
+        <table className="table">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="text-white">
               <th></th>
               <th>Image</th>
               <th>Title</th>

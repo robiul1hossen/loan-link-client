@@ -21,10 +21,10 @@ const RejectLoans = () => {
         <Title text1={"Approved"} text2={"Loans"} />
       </div>
       <div className="overflow-x-auto">
-        <table className="table table-zebra">
+        <table className="table">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="text-white">
               <th></th>
               <th>Loan ID</th>
               <th>Applicant Info</th>

@@ -40,23 +40,21 @@ const Banner = () => {
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         className="mySwiper">
         <SwiperSlide>
-          <div className="w-full h-[350px] bg-base-200">
+          <div className="w-full h-[350px] bg-linear-to-r from-purple-600 to-pink-500 text-white">
             <div className="container mx-auto flex flex-col md:flex-row items-center py-16 px-6 gap-10">
               {/* Left Text Section */}
               <div className="flex-1 space-y-4">
-                <h2 className="text-4xl font-bold text-primary">
-                  Need a Quick Micro Loan?
-                </h2>
-                <p className="text-lg text-gray-600">
+                <h2 className="text-4xl font-bold">Need a Quick Micro Loan?</h2>
+                <p className="text-lg">
                   Fast approval, simple requirements, and trusted service.
                   Empower your financial journey with hassle-free micro loans.
                 </p>
 
                 <div className="flex gap-4 pt-3">
-                  <Link to="/loan-form" className="btn btn-primary btn-lg">
+                  <Link to="/loan-form" className="btn btn-secondary btn-lg">
                     Apply for Loan
                   </Link>
-                  <Link to="/" className="btn btn-outline btn-primary btn-lg">
+                  <Link to="/" className="btn btn-outline btn-white btn-lg">
                     Explore Loans
                   </Link>
                 </div>

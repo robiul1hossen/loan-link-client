@@ -80,7 +80,7 @@ const CustomerFeedback = () => {
         </div>
 
         {/* Fixed height container */}
-        <div className="relative bg-slate-50 p-8 rounded-2xl shadow-md overflow-hidden min-h-[250px] flex items-center justify-center">
+        <div className="relative bg-[#471396] p-8 rounded-2xl shadow-md overflow-hidden min-h-[250px] flex items-center justify-center">
           <AnimatePresence custom={direction} mode="wait">
             <motion.div
               key={current}
@@ -95,13 +95,13 @@ const CustomerFeedback = () => {
                 alt={feedbacks[current].name}
                 className="w-20 h-20 rounded-full mb-4"
               />
-              <p className="text-slate-600 mb-4 italic">
+              <p className="text-white mb-4 italic">
                 "{feedbacks[current].comment}"
               </p>
-              <h3 className="text-lg font-semibold text-slate-800">
+              <h3 className="text-lg font-semibold text-white">
                 {feedbacks[current].name}
               </h3>
-              <span className="text-sm text-slate-500">
+              <span className="text-sm text-white">
                 {feedbacks[current].role}
               </span>
             </motion.div>

@@ -13,7 +13,7 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <div>
+        <div className="text-white bg-[url(https://i.ibb.co.com/gLdZT1N5/vecteezy-minimalist-deep-blue-premium-abstract-background-with-luxury-27157752.jpg)]">
           <RouterProvider router={router} />
           <ToastContainer />
         </div>

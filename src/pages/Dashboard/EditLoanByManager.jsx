@@ -40,7 +40,7 @@ const EditLoanByManager = () => {
             <input
               type="text"
               defaultValue={loan.image}
-              className="input input-bordered w-full mt-1 outline-none"
+              className="input input-bordered w-full mt-1 outline-none border border-[#B13BFF] bg-black text-white placeholder-white"
               {...register("image", { required: true })}
             />
           </div>
@@ -51,7 +51,7 @@ const EditLoanByManager = () => {
             <input
               type="text"
               defaultValue={loan.title}
-              className="input input-bordered w-full mt-1 outline-none"
+              className="input input-bordered w-full mt-1 outline-none border border-[#B13BFF] bg-black text-white placeholder-white"
               {...register("title", { required: true })}
             />
           </div>
@@ -62,7 +62,7 @@ const EditLoanByManager = () => {
             <input
               type="text"
               defaultValue={loan.category}
-              className="input input-bordered w-full mt-1 outline-none"
+              className="input input-bordered w-full mt-1 outline-none border border-[#B13BFF] bg-black text-white placeholder-white"
               {...register("category", { required: true })}
             />
           </div>
@@ -73,7 +73,7 @@ const EditLoanByManager = () => {
             <input
               type="text"
               defaultValue={loan.interestRate}
-              className="input input-bordered w-full mt-1 outline-none"
+              className="input input-bordered w-full mt-1 outline-none border border-[#B13BFF] bg-black text-white placeholder-white"
               {...register("interestRate", { required: true })}
             />
           </div>
@@ -84,7 +84,7 @@ const EditLoanByManager = () => {
             <input
               type="number"
               defaultValue={loan.maxLimit}
-              className="input input-bordered w-full mt-1 outline-none"
+              className="input input-bordered w-full mt-1 outline-none border border-[#B13BFF] bg-black text-white placeholder-white"
               {...register("maxLimit", { required: true })}
             />
           </div>
@@ -94,7 +94,7 @@ const EditLoanByManager = () => {
             <input
               type="number"
               defaultValue={loan.processingFee}
-              className="input input-bordered w-full mt-1 outline-none"
+              className="input input-bordered w-full mt-1 outline-none border border-[#B13BFF] bg-black text-white placeholder-white"
               {...register("processingFee", { required: true })}
             />
           </div>
@@ -105,7 +105,7 @@ const EditLoanByManager = () => {
               type="text"
               defaultValue={user?.displayName}
               readOnly
-              className="input input-bordered w-full mt-1 outline-none"
+              className="input input-bordered w-full mt-1 outline-none border border-[#B13BFF] bg-black text-white placeholder-white"
               {...register("createdBy", { required: true })}
             />
           </div>
@@ -116,7 +116,7 @@ const EditLoanByManager = () => {
               type="text"
               defaultValue={user.email}
               readOnly
-              className="input input-bordered w-full mt-1 outline-none"
+              className="input input-bordered w-full mt-1 outline-none border border-[#B13BFF] bg-black text-white placeholder-white"
               {...register("creatorEmail", { required: true })}
             />
           </div>
@@ -126,7 +126,7 @@ const EditLoanByManager = () => {
           <label className="font-semibold">Description</label>
           <textarea
             defaultValue={loan.description}
-            className="textarea textarea-bordered w-full mt-1 outline-none"
+            className="textarea textarea-bordered w-full mt-1 outline-none border border-[#B13BFF] bg-black text-white placeholder-white"
             rows={3}
             {...register("description", { required: true })}></textarea>
         </div>
@@ -138,7 +138,7 @@ const EditLoanByManager = () => {
             {[6, 12, 18, 24, 30, 36, 48, 60].map((num) => (
               <label key={num} className="flex items-center gap-2">
                 <input
-                  className="outline-none"
+                  className="outline-none border border-[#B13BFF] bg-black text-white placeholder-white"
                   type="checkbox"
                   value={num}
                   {...register("emiPlans")}
@@ -186,7 +186,9 @@ const EditLoanByManager = () => {
 
         {/* SUBMIT BUTTON */}
         <div className="text-center mt-10">
-          <button className="btn btn-primary px-8" type="submit">
+          <button
+            className="btn bg-[#471396] text-white border-[#e5e5e5] px-8"
+            type="submit">
             Add A Loan
           </button>
         </div>

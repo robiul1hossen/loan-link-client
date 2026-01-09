@@ -38,7 +38,7 @@ const UpdateLoan = () => {
       </div>
       <form
         onSubmit={handleSubmit(handleUpdateLoan)}
-        className="space-y-4 p-6 max-w-2xl mx-auto bg-base-100 shadow-xl rounded-xl">
+        className="space-y-4 p-6 max-w-2xl mx-auto shadow-xl rounded-xl bg-[#090040] text-white">
         <h2 className="text-2xl font-bold mb-4">Update Loan</h2>
 
         <div>
@@ -46,7 +46,7 @@ const UpdateLoan = () => {
           <input
             type="text"
             defaultValue={loan.image}
-            className="input input-bordered w-full mt-1"
+            className="input input-bordered w-full mt-1 bg-black text-white"
             {...register("image", { required: true })}
           />
         </div>
@@ -56,7 +56,7 @@ const UpdateLoan = () => {
           <input
             type="text"
             defaultValue={loan.title}
-            className="input input-bordered w-full mt-1"
+            className="input input-bordered w-full mt-1 bg-black text-white"
             {...register("title", { required: true })}
           />
         </div>
@@ -65,7 +65,7 @@ const UpdateLoan = () => {
           <label className="font-semibold">Description</label>
           <textarea
             defaultValue={loan.description}
-            className="textarea textarea-bordered w-full mt-1"
+            className="textarea textarea-bordered w-full mt-1 bg-black text-white"
             rows={3}
             {...register("description", { required: true })}></textarea>
         </div>
@@ -73,7 +73,7 @@ const UpdateLoan = () => {
         <div>
           <label className="font-semibold">Category</label>
           <select
-            className="select select-bordered w-full mt-1"
+            className="select select-bordered w-full mt-1 bg-black text-white"
             {...register("category", { required: true })}>
             {categories.map((c) => (
               <option key={c} value={c}>
@@ -87,7 +87,7 @@ const UpdateLoan = () => {
           <label className="font-semibold">Interest Rate (min-max)</label>
           <input
             type="text"
-            className="input input-bordered w-full mt-1"
+            className="input input-bordered w-full mt-1 bg-black text-white"
             defaultValue={loan.interestRate}
             {...register("interestRate", { required: true })}
           />
@@ -99,7 +99,7 @@ const UpdateLoan = () => {
           <input
             type="number"
             defaultValue={loan.maxLimit}
-            className="input input-bordered w-full mt-1"
+            className="input input-bordered w-full mt-1 bg-black text-white"
             {...register("maxLimit", { required: true })}
           />
         </div>
@@ -126,7 +126,7 @@ const UpdateLoan = () => {
           <input
             type="number"
             defaultValue={10}
-            className="input input-bordered w-full mt-1"
+            className="input input-bordered w-full mt-1 bg-black text-white"
             {...register("processingFee", { required: true })}
           />
         </div>
@@ -170,7 +170,7 @@ const UpdateLoan = () => {
           <input
             type="text"
             defaultValue={loan?.createdBy}
-            className="input input-bordered w-full mt-1"
+            className="input input-bordered w-full mt-1 bg-black text-white"
             {...register("createdBy", { required: true })}
           />
         </div>

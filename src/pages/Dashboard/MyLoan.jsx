@@ -105,16 +105,13 @@ const MyLoan = () => {
   return (
     <div>
       <div className="mt-5">
-        <Title
-          text1={"My"}
-          text2={"Loan"}
-        />
+        <Title text1={"My"} text2={"Loan"} />
       </div>
       <div className="overflow-x-auto">
-        <table className="table table-zebra">
+        <table className="table">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="text-white">
               <th></th>
               <th>Loan Title</th>
               <th>Amount</th>
@@ -182,7 +179,7 @@ const MyLoan = () => {
         <dialog
           ref={editLoanModalRef}
           className="modal modal-bottom sm:modal-middle">
-          <div className="modal-box">
+          <div className="modal-box bg-[#090040]">
             <div className="py-0">
               <form onSubmit={handleSubmit(handleEdit)}>
                 <div className="card-body">
@@ -194,7 +191,7 @@ const MyLoan = () => {
                           type="text"
                           defaultValue={selectedLoan.firstName}
                           {...register("firstName", { required: true })}
-                          className="input outline-none w-full"
+                          className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                           placeholder="First Name"
                         />
                         {errors.firstName && (
@@ -209,7 +206,7 @@ const MyLoan = () => {
                           type="text"
                           defaultValue={selectedLoan.lastName}
                           {...register("lastName", { required: true })}
-                          className="input outline-none w-full"
+                          className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                           placeholder="Last Name"
                         />
                         {errors.lastName && (
@@ -225,7 +222,7 @@ const MyLoan = () => {
                           defaultValue={user?.email}
                           readOnly
                           {...register("email", { required: true })}
-                          className="input outline-none w-full"
+                          className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                           placeholder="Email"
                         />
                       </div>
@@ -235,7 +232,7 @@ const MyLoan = () => {
                           type="text"
                           defaultValue={selectedLoan.number}
                           {...register("number", { required: true })}
-                          className="input outline-none w-full"
+                          className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                           placeholder="Contact Number"
                         />
                         {errors.number && (
@@ -252,7 +249,7 @@ const MyLoan = () => {
                           type="text"
                           defaultValue={selectedLoan.nid}
                           {...register("nid", { required: true })}
-                          className="input outline-none w-full"
+                          className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                           placeholder="National ID / Passport Number"
                         />
                         {errors.nid && (
@@ -267,7 +264,7 @@ const MyLoan = () => {
                           type="text"
                           defaultValue={selectedLoan.incomeSource}
                           {...register("incomeSource", { required: true })}
-                          className="input outline-none w-full"
+                          className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                           placeholder="Your income source"
                         />
                         {errors.incomeSource && (
@@ -282,7 +279,7 @@ const MyLoan = () => {
                           type="number"
                           defaultValue={selectedLoan.monthlyIncome}
                           {...register("monthlyIncome", { required: true })}
-                          className="input outline-none w-full"
+                          className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                           placeholder="Your monthly income"
                         />
                         {errors.monthlyIncome && (
@@ -298,7 +295,7 @@ const MyLoan = () => {
                           defaultValue={selectedLoan.title}
                           readOnly
                           {...register("title", { required: true })}
-                          className="input outline-none w-full"
+                          className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                           placeholder="Loan Title"
                         />
                         {errors.title && (
@@ -314,7 +311,7 @@ const MyLoan = () => {
                           defaultValue={selectedLoan.loanAmount}
                           readOnly
                           {...register("loanAmount", { required: true })}
-                          className="input outline-none w-full"
+                          className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                           placeholder="Your desire loan amount"
                         />
                         {errors.loanAmount && (
@@ -330,7 +327,7 @@ const MyLoan = () => {
                           defaultValue={selectedLoan.interest}
                           readOnly
                           {...register("interest", { required: true })}
-                          className="input outline-none w-full"
+                          className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                           placeholder="Your desire loan amount"
                         />
                         {errors.interest && (
@@ -346,7 +343,7 @@ const MyLoan = () => {
                           defaultValue={selectedLoan.totalPay}
                           readOnly
                           {...register("totalPay", { required: true })}
-                          className="input outline-none w-full"
+                          className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                           placeholder="Total Pay"
                         />
                         {errors.totalPay && (
@@ -361,7 +358,7 @@ const MyLoan = () => {
                           type="text"
                           defaultValue={selectedLoan?.loanReason}
                           {...register("loanReason", { required: true })}
-                          className="input outline-none w-full"
+                          className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                           placeholder="Describe your loan reason"
                         />
                         {errors.loanReason && (
@@ -376,7 +373,7 @@ const MyLoan = () => {
                           type="text"
                           defaultValue={selectedLoan.address}
                           {...register("address", { required: true })}
-                          className="input outline-none w-full"
+                          className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                           placeholder="Your Address"
                         />
                         {errors.address && (
@@ -394,12 +391,12 @@ const MyLoan = () => {
                         rows="10"
                         cols="50"
                         {...register("notes")}
-                        className="input outline-none w-full"
+                        className="input outline-none w-full border border-[#B13BFF] bg-black text-white placeholder-white"
                         placeholder="Add a note"
                       />
                     </div>
                     <div className="text-center">
-                      <button className="btn btn-primary mt-4 px-12">
+                      <button className="btn bg-[#471396] text-white border-[#e5e5e5] mt-4 px-12">
                         Edit
                       </button>
                     </div>

@@ -108,8 +108,6 @@ const LoanDetails = () => {
 
   return (
     <div className="max-w-5xl mx-auto mt-10 p-5">
-      {/* //TODO Loan calculator */}
-
       <motion.div
         variants={scaleIn}
         initial="hidden"
@@ -136,22 +134,22 @@ const LoanDetails = () => {
         initial="hidden"
         animate="show"
         className="grid md:grid-cols-2 gap-5 mt-6">
-        <div className="bg-base-200 p-5 rounded-xl shadow-md">
+        <div className="bg-[#471396] p-5 rounded-xl shadow-md">
           <h3 className="font-semibold">Category</h3>
           <p>{loan.category}</p>
         </div>
 
-        <div className="bg-base-200 p-5 rounded-xl shadow-md">
+        <div className="bg-[#471396] p-5 rounded-xl shadow-md">
           <h3 className="font-semibold">Interest Rate</h3>
           <p>{loan.interestRate}%</p>
         </div>
 
-        <div className="bg-base-200 p-5 rounded-xl shadow-md">
+        <div className="bg-[#471396] p-5 rounded-xl shadow-md">
           <h3 className="font-semibold">Max Limit</h3>
           <p>${loan.maxLimit}</p>
         </div>
 
-        <div className="bg-base-200 p-5 rounded-xl shadow-md">
+        <div className="bg-[#471396] p-5 rounded-xl shadow-md">
           <h3 className="font-semibold">Processing Fee</h3>
           <p>{loan.processingFee}% of loan amount</p>
         </div>
@@ -174,7 +172,7 @@ const LoanDetails = () => {
         ${
           selectedEmi === plan
             ? "bg-primary text-white"
-            : "bg-base-100 text-black hover:bg-primary hover:text-white"
+            : "bg-base-100 text-black hover:bg-white hover:text-black"
         }
       `}>
                 {plan} Months
@@ -196,7 +194,7 @@ const LoanDetails = () => {
                   calculateLoan(val);
                 }}
                 required
-                className="input outline-none"
+                className="input outline-none bg-white text-black"
               />
             </form>
           </div>
@@ -246,7 +244,7 @@ const LoanDetails = () => {
         <button
           onClick={handleApply}
           disabled={userData?.role !== "Borrower"}
-          className={`btn btn-primary btn-lg px-10 shadow-lg duration-300 
+          className={`btn bg-[#471396] text-white border-[#e5e5e5] btn-lg px-10 shadow-lg duration-300 
     ${
       userData?.role !== "Borrower"
         ? "btn-disabled opacity-50 cursor-not-allowed"

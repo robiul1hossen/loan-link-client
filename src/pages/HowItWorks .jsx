@@ -44,14 +44,12 @@ const HowItWorks = () => {
           {steps.map((item) => (
             <div
               key={item.step}
-              className="bg-slate-50 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
-              <span className="text-4xl font-bold text-blue-600">
-                {item.step}
-              </span>
-              <h3 className="mt-4 text-lg font-semibold text-slate-800">
+              className="bg-[#471396] p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+              <span className="text-4xl font-bold text-white">{item.step}</span>
+              <h3 className="mt-4 text-lg font-semibold text-white">
                 {item.title}
               </h3>
-              <p className="mt-2 text-slate-600 text-sm">{item.desc}</p>
+              <p className="mt-2 text-white text-sm">{item.desc}</p>
             </div>
           ))}
         </div>

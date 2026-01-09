@@ -57,10 +57,10 @@ const PendingLoans = () => {
         <Title text1={"Pending"} text2={"Loans"} />
       </div>
       <div className="overflow-x-auto">
-        <table className="table table-zebra">
+        <table className="table">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="text-white">
               <th></th>
               <th>Loan Id</th>
               <th>User Info</th>

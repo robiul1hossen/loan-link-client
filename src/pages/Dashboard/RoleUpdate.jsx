@@ -48,8 +48,6 @@ const RoleUpdate = () => {
         refetch();
       }
     } else {
-      console.log(roleStatus);
-      console.log(rejectNote);
       const res = await axiosSecure.patch(`/users/role/${id}`, { rejectNote });
       console.log(res.data);
       if (res.data.modifiedCount) {
@@ -67,7 +65,7 @@ const RoleUpdate = () => {
         <Title text1={"Update"} text2={"Users"} />
       </div>
       <div className="max-w-xl mx-auto p-6">
-        <div className="card shadow-xl bg-base-100 p-6">
+        <div className="card shadow-xl bg-[#090040] p-6">
           <div className="flex gap-4 justify-center">
             <img
               src={user.photoURL}
@@ -127,15 +125,15 @@ const RoleUpdate = () => {
       <dialog
         ref={suspendModalRef}
         className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box">
-          <div className="max-w-sm w-full rounded-2xl bg-white p-4">
+        <div className="modal-box text-white bg-[#090040]">
+          <div className="max-w-sm w-full rounded-2xl p-4">
             {/* Header */}
             <h2 className="font-bold text-xl mb-3">Write a suspend note:</h2>
-            <div className="flex flex-col items-end">
+            <div className="flex flex-col items-end w-full">
               <textarea
                 name=""
                 onChange={(e) => setNote(e.target.value)}
-                className="w-full border outline-none px-3"
+                className="w-full border outline-none px-3 "
                 color={5}
                 rows={5}
                 id=""></textarea>

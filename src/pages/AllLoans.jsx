@@ -39,7 +39,7 @@ const AllLoans = () => {
             type="text"
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Find your loan here"
-            className="input outline-none "
+            className="input outline-none text-black "
           />
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
@@ -68,8 +68,8 @@ const AllLoans = () => {
                 onClick={() => setPage(pageNum)}
                 className={` mx-2 ${
                   pageNum === page
-                    ? "btn-primary btn btn-xs"
-                    : "btn btn-outline hover:btn-primary btn-xs"
+                    ? "bg-[#B13BFF] text-white btn btn-xs"
+                    : "btn btn-outline hover:bg-[#B13BFF] hover:text-white btn-xs"
                 }`}>
                 {pageNum}
               </button>
