@@ -31,10 +31,11 @@ const LoanDetails = () => {
   useEffect(() => {
     if (!user?.email) return;
 
-    axiosSecure.get(`/user?email=${user.email}`).then((res) => {
+    axiosSecure.get(`/user?email=${user?.email}`).then((res) => {
       setUserData(res.data);
     });
-  }, [user?.email]);
+  }, [user?.email, axiosSecure]);
+  console.log(userData);
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
