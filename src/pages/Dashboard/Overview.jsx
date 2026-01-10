@@ -16,16 +16,12 @@ import {
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 
-const loanAmountData = [
-  { name: "Applied", amount: 800000 },
-  { name: "Approved", amount: 520000 },
-];
-
 const COLORS = ["#4f46e5", "#f59e0b", "#ef4444", "#10b981"];
 
 const Overview = () => {
   const [userRoleData, setUserRoleData] = useState([]);
   const [monthlyLoanData, setMonthlyLoanData] = useState([]);
+  const [loanAmountData, setLoanAmountData] = useState([]);
   const axiosSecure = useAxiosSecure();
   const { data: loanState = [] } = useQuery({
     queryKey: ["loanState"],
@@ -44,10 +40,16 @@ const Overview = () => {
       const res = await axiosSecure.get("/loan-application/monthly-stats");
       setMonthlyLoanData(res.data);
     };
+    const loadTotalLoanAmount = async () => {
+      const res = await axiosSecure.get("/loan-application/amount-chart");
+      setLoanAmountData(res.data);
+    };
 
     loadUser();
     loadMonthlyApply();
+    loadTotalLoanAmount();
   }, [axiosSecure]);
+  console.log(loanAmountData);
 
   return (
     <div className="p-6  min-h-screen">
