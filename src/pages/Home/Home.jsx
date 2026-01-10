@@ -7,6 +7,7 @@ import GetStartedCTA from "../../components/GetStartedCTA ";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import LoanStats from "../../components/LoanStats";
 
 const Home = () => {
   useEffect(() => {
@@ -19,6 +20,7 @@ const Home = () => {
     <>
       <Banner />
       <AvailableLoans />
+      <LoanStats />
       <HowItWorks />
       <CustomerFeedback />
       <WhyChooseLoanLink />

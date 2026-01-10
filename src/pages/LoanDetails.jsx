@@ -108,7 +108,7 @@ const LoanDetails = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto mt-10 p-5">
+    <div className=" mx-auto mt-10 p-4">
       <motion.div
         variants={scaleIn}
         initial="hidden"
@@ -127,7 +127,7 @@ const LoanDetails = () => {
         animate="show"
         className="mt-6">
         <h1 className="text-3xl font-bold">{loan.title}</h1>
-        <p className="text-gray-600 mt-2">{loan.description}</p>
+        <p className=" mt-2">{loan.description}</p>
       </motion.div>
 
       <motion.div
