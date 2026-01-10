@@ -43,13 +43,13 @@ const AllLoanApplication = () => {
         <Title text1={"All Loan"} text2={"Applications"} />
       </div>
       <div className="flex justify-start px-4 md:justify-end ">
-        <div className="flex flex-col w-1/2 md:w-1/4">
-          <label className="label text-right">Sort By Status</label>
+        <div className="flex flex-col w-1/2 md:w-1/4 text-white">
+          <label className="label text-right ">Sort By Status</label>
           <select
             onChange={(e) => {
               handleSort(e);
             }}
-            className="select select-primary shadow-xl outline-none w-full"
+            className="select select-primary shadow-xl outline-none w-full bg-[#090040]"
             defaultValue="">
             <option value="" disabled>
               Select Status

@@ -58,7 +58,7 @@ const ManageUsers = () => {
                     value="Borrower"
                     onChange={handleRoleChange}
                     type="checkbox"
-                    className="checkbox"
+                    className="checkbox bg-white text-[#090040]"
                   />
                   Borrower
                 </label>
@@ -69,7 +69,7 @@ const ManageUsers = () => {
                     value="Manager"
                     onChange={handleRoleChange}
                     type="checkbox"
-                    className="checkbox"
+                    className="checkbox bg-white text-[#090040]"
                   />
                   Manager
                 </label>
@@ -80,7 +80,7 @@ const ManageUsers = () => {
                     value="Admin"
                     onChange={handleRoleChange}
                     type="checkbox"
-                    className="checkbox"
+                    className="checkbox bg-white text-[#090040]"
                   />
                   Admin
                 </label>
@@ -92,7 +92,7 @@ const ManageUsers = () => {
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
                 placeholder="Search Users"
-                className="input outline-none "
+                className="input outline-none bg-black text-white placeholder-white border border-[#B13BFF]"
               />
               <button type="submit" className="btn btn-primary w-full mt-2">
                 {" "}

@@ -117,7 +117,7 @@ const PendingLoans = () => {
       <dialog
         ref={applicationDetailsModalRef}
         className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box">
+        <div className="modal-box bg-[#090040]">
           <h3 className="font-bold text-lg">{applicationDetails.title}</h3>
           <div className="flex flex-col md:flex-row gap-2">
             <div>
