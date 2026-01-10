@@ -79,60 +79,65 @@ const CustomerFeedback = () => {
           <Title text1={"What Our"} text2={" Customers Say"} />
         </div>
 
-        {/* Fixed height container */}
-        <div className="relative bg-[#471396] p-8 rounded-2xl shadow-md overflow-hidden min-h-[250px] flex items-center justify-center">
-          <AnimatePresence custom={direction} mode="wait">
-            <motion.div
-              key={current}
-              custom={direction}
-              variants={variants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              className="flex flex-col items-center text-center px-4">
-              <img
-                src={feedbacks[current].avatar}
-                alt={feedbacks[current].name}
-                className="w-20 h-20 rounded-full mb-4"
-              />
-              <p className="text-white mb-4 italic">
-                "{feedbacks[current].comment}"
-              </p>
-              <h3 className="text-lg font-semibold text-white">
-                {feedbacks[current].name}
-              </h3>
-              <span className="text-sm text-white">
-                {feedbacks[current].role}
-              </span>
-            </motion.div>
-          </AnimatePresence>
+        <div
+          data-aos="fade-down"
+          data-aos-easing="linear"
+          data-aos-duration="1500">
+          {/* Fixed height container */}
+          <div className="relative bg-[#471396] p-8 rounded-2xl shadow-md overflow-hidden min-h-[250px] flex items-center justify-center">
+            <AnimatePresence custom={direction} mode="wait">
+              <motion.div
+                key={current}
+                custom={direction}
+                variants={variants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                className="flex flex-col items-center text-center px-4">
+                <img
+                  src={feedbacks[current].avatar}
+                  alt={feedbacks[current].name}
+                  className="w-20 h-20 rounded-full mb-4"
+                />
+                <p className="text-white mb-4 italic">
+                  "{feedbacks[current].comment}"
+                </p>
+                <h3 className="text-lg font-semibold text-white">
+                  {feedbacks[current].name}
+                </h3>
+                <span className="text-sm text-white">
+                  {feedbacks[current].role}
+                </span>
+              </motion.div>
+            </AnimatePresence>
 
-          {/* Arrows */}
-          <button
-            onClick={handlePrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition">
-            &#8592;
-          </button>
-          <button
-            onClick={handleNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition">
-            &#8594;
-          </button>
-        </div>
+            {/* Arrows */}
+            <button
+              onClick={handlePrev}
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition">
+              &#8592;
+            </button>
+            <button
+              onClick={handleNext}
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition">
+              &#8594;
+            </button>
+          </div>
 
-        {/* Dots */}
-        <div className="flex justify-center mt-6 gap-2">
-          {feedbacks.map((_, index) => (
-            <span
-              key={index}
-              onClick={() => {
-                setDirection(index > current ? 1 : -1);
-                setCurrent(index);
-              }}
-              className={`w-3 h-3 rounded-full cursor-pointer ${
-                current === index ? "bg-blue-600" : "bg-slate-300"
-              }`}></span>
-          ))}
+          {/* Dots */}
+          <div className="flex justify-center mt-6 gap-2">
+            {feedbacks.map((_, index) => (
+              <span
+                key={index}
+                onClick={() => {
+                  setDirection(index > current ? 1 : -1);
+                  setCurrent(index);
+                }}
+                className={`w-3 h-3 rounded-full cursor-pointer ${
+                  current === index ? "bg-blue-600" : "bg-slate-300"
+                }`}></span>
+            ))}
+          </div>
         </div>
       </div>
     </section>

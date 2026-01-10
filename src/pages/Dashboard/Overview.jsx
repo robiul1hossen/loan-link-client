@@ -16,30 +16,16 @@ import {
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 
-const monthlyLoanData = [
-  { month: "Jan", loans: 40 },
-  { month: "Feb", loans: 55 },
-  { month: "Mar", loans: 70 },
-  { month: "Apr", loans: 60 },
-  { month: "May", loans: 90 },
-  { month: "Jun", loans: 110 },
-];
-
 const loanAmountData = [
   { name: "Applied", amount: 800000 },
   { name: "Approved", amount: 520000 },
 ];
 
-// const userRoleData = [
-//   { role: "Users", count: 300 },
-//   { role: "Managers", count: 25 },
-//   { role: "Admins", count: 3 },
-// ];
-
 const COLORS = ["#4f46e5", "#f59e0b", "#ef4444", "#10b981"];
 
 const Overview = () => {
   const [userRoleData, setUserRoleData] = useState([]);
+  const [monthlyLoanData, setMonthlyLoanData] = useState([]);
   const axiosSecure = useAxiosSecure();
   const { data: loanState = [] } = useQuery({
     queryKey: ["loanState"],
@@ -54,10 +40,14 @@ const Overview = () => {
       const res = await axiosSecure.get("/user/stats");
       setUserRoleData(res.data);
     };
+    const loadMonthlyApply = async () => {
+      const res = await axiosSecure.get("/loan-application/monthly-stats");
+      setMonthlyLoanData(res.data);
+    };
 
     loadUser();
+    loadMonthlyApply();
   }, [axiosSecure]);
-  console.log(userRoleData);
 
   return (
     <div className="p-6  min-h-screen">
@@ -97,7 +87,7 @@ const Overview = () => {
               <Tooltip />
               <Line
                 type="monotone"
-                dataKey="loans"
+                dataKey="applications"
                 stroke="#4f46e5"
                 strokeWidth={3}
               />
